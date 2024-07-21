@@ -1,7 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
+const dbUri = process.env.DB_URI || 'mongodb://127.0.0.1:27017/silver-feather';
+const dbPort = process.env.DB_PORT || '3000';
 
 const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({ origin: '', credentials: true }));
+app.use(express.static('public'));
+
+mongoose.connect(dbUri);
+mongoose.connection.on('connected', () => console.log('DB is Connected!'));
+mongoose.connection.on('disconnected', () => console.log('DB is Disconnected!'));
+mongoose.connection.on('error', (err) => console.log('DB Error: ' + err));
+
+app.listen(dbPort, () => console.log(`App is listening on http://localhost:${dbPort}`));
