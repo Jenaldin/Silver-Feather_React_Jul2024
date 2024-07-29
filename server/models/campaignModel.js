@@ -37,6 +37,15 @@ const campaignSchema = new mongoose.Schema({
       max: 8,
       required: [true, 'Party size is required initially'],
    },
+   dmNotes:[{
+      note: {
+         type: String,
+      },
+      addedDate: {
+         type: Date,
+         default: Date.now,
+      },
+   }],
    charactersPlaying: [{
       type: mongoose.Types.ObjectId,
       ref: 'Character',
@@ -49,19 +58,19 @@ const campaignSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'Character',
    }],
-   sessionsOfCampaign:
-   [{
+   sessionsOfCampaign:[{
       user: {
          type: mongoose.Types.ObjectId,
          ref: 'Session'
       },
-      requestedOn: {
+      addedDate: {
          type: Date,
-         default: Date.now
-      }
+         default: Date.now,
+      },
    }],
-   createdDate: {
+   createdAt: {
       type: Date,
+      default: Date.now,
    },
    owner: {
       type: mongoose.Types.ObjectId,
@@ -75,12 +84,6 @@ const campaignSchema = new mongoose.Schema({
       type: Boolean,
       default: false
    },
-});
-
-campaignSchema.pre('save', function () {
-   if (!this.createdDate) {
-      this.createdDate = Date.now();
-   };
 });
 
 const Campaign = mongoose.model('Campaign', campaignSchema);

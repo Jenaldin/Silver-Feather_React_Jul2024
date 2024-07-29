@@ -23,18 +23,27 @@ const sessionSchema = new mongoose.Schema({
          message: 'Invalid cover link',
       },
    },
-   antagonists: {
+   antagonist: {
       type: [String],
+   },
+   antagonistVisible:{
+      type: Boolean,
+      default: false
    },
    loot:{
       type: [String],
+   },
+   lootVisible:{
+      type: Boolean,
+      default: false
    },
    campaign: {
       type: mongoose.Types.ObjectId,
       ref: 'Campaign'
    },
-   createdDate: {
+   createdAt: {
       type: Date,
+      default: Date.now,
    },
    owner: {
       type: mongoose.Types.ObjectId,
@@ -44,12 +53,6 @@ const sessionSchema = new mongoose.Schema({
       type: Boolean,
       default: false
    },
-});
-
-sessionSchema.pre('save', function () {
-   if (!this.createdDate) {
-      this.createdDate = Date.now();
-   };
 });
 
 const Session = mongoose.model('Session', sessionSchema);
