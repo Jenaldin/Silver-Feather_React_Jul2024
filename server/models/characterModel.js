@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+const abilitySchema = require('../schemas/abilitySchema');
+const saveSchema = require('../schemas/saveSchema');
+const skillSchema = require('../schemas/skillSchema');
+const weaponSchema = require('../schemas/weaponSchema');
+const armorSchema = require('../schemas/armorSchema');
+const spellLevelSchema = require('../schemas/spellLevelSchema');
+
 const characterSchema = new mongoose.Schema({
    name: {
       type: String,
@@ -54,23 +61,23 @@ const characterSchema = new mongoose.Schema({
    hitPointsDefault: {
       type: Number,
       default: 1,
-      required: true,
+      required: [true, 'Hit points are required'],
    },
    hitDice: {
       type: String,
-      required: true,
+      required: [true, 'Hit dice is required']
    },
    proficiencyScore: {
       type: Number,
-      required: true,
+      required: [true, 'Proficiency is required']
    },
    initiative: {
       type: Number,
-      required: true,
+      required: [true, 'Initiative is required']
    },
    speed: {
       type: Number,
-      required: true,
+      required: [true, 'Speed is required']
    },
    abilities: {
       str: {...abilitySchema},
@@ -81,12 +88,12 @@ const characterSchema = new mongoose.Schema({
       cha: {...abilitySchema},
    },
    saves: {
-      str: {...savesSchema},
-      dex: {...savesSchema},
-      con: {...savesSchema},
-      wis: {...savesSchema},
-      int: {...savesSchema},
-      cha: {...savesSchema},
+      str: {...saveSchema},
+      dex: {...saveSchema},
+      con: {...saveSchema},
+      wis: {...saveSchema},
+      int: {...saveSchema},
+      cha: {...saveSchema},
    },
    spellSaveDC: {
       type: Number,
@@ -96,7 +103,7 @@ const characterSchema = new mongoose.Schema({
    },
    armorClass: {
       type: Number,
-      required: true,
+      required: [true, 'Armor Class is required']
    },
    meleeAttackBonus: {
       type: Number,
@@ -184,99 +191,6 @@ const characterSchema = new mongoose.Schema({
    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-   },
-});
-
-const abilitySchema = new mongoose.Schema({
-   score: {
-      type: Number,
-      min: 1,
-      max: 20,
-      required: true,
-   },
-   modifier: {
-      type: Number,
-      min: -5,
-      max: 10,
-      required: true,
-   },
-});
-
-const savesSchema = new mongoose.Schema({
-   points: {
-      type: Number,
-      min: 0,
-      max: 15,
-      default: 0,
-   },
-   proficient: {
-      type: Boolean,
-      default: false,
-   },
-});
-
-const skillSchema = new mongoose.Schema({
-   points: {
-      type: Number,
-      min: 0,
-      max: 25,
-      default: 0,
-   },
-   proficient: {
-      type: Boolean,
-      default: false,
-   },
-});
-
-const weaponSchema = new mongoose.Schema({
-   name: { 
-      type: String, 
-      required: true,
-   },
-   weaponType: { 
-      type: String, 
-      required: true,
-   },
-   properties: { 
-      type: String, 
-   },
-   damageType: { 
-      type: String, 
-      required: true,
-   },
-   diceDamage: { 
-      type: String, 
-      required: true,
-   },
-});
-
-const armorSchema = new mongoose.Schema({
-   name: { 
-      type: String, 
-      required: true, 
-   },
-   type: { 
-      type: String, 
-      required: true, 
-   },
-   armorClassUnequipped: { 
-      type: Number, 
-      required: true, 
-   },
-   penalty: { 
-      type: Boolean, 
-      required: false, 
-   },
-});
-
-const spellLevelSchema = new Schema({
-   level: { 
-      type: Number, 
-      required: true
-   },
-   slots: { 
-      type: Number,
-      required: true 
    },
 });
 
