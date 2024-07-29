@@ -262,6 +262,14 @@ const characterSchema = new mongoose.Schema({
    spellSlots: [
       spellLevelSchema,
    ],
+   isPublished: { 
+      type: Boolean, 
+      required: false, 
+   },
+   isPublic: { 
+      type: Boolean, 
+      required: false, 
+   },
    campaign: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Campaign',
