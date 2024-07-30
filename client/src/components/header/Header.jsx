@@ -11,7 +11,7 @@ export default function Header() {
       fontStyle: 'italic',
       fontWeight: 'bold',
       margin: '0 10px',
-      color: location.pathname === path ? theme.palette.primary.contrastText : theme.palette.primary.dark,
+      color: location.pathname === path ? theme.palette.primary.contrastText : theme.palette.primary.darker,
       '&:hover': {
          backgroundColor: theme.palette.primary.light,
          color: theme.palette.background.default,
@@ -36,7 +36,7 @@ export default function Header() {
                   <Button sx={buttonStyle('/adventurers-board')}>Adventurer's Board</Button>
                </Link>
                <Link to="/my-boards" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/my-boards')}>My Boards</Button>
+                  <Button sx={buttonStyle('/my-boards')} >My Boards</Button>
                </Link>
                <Link to="/register" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/register')}>Register</Button>
