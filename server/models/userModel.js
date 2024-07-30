@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
    username: {
       type: String,
       match: [/^[a-zA-Z0-9_-]+$/, 'Invalid username'],
-      minlength: [2, 'Username should be at least 2 characters'],
-      maxlength: [20, 'Username should be no more than 20 characters'],
+      minlength: [3, 'Username should be at least 3 characters'],
+      maxlength: [10, 'Username should be no more than 10 characters'],
       required: [true, 'Username is required'],
       unique: true,
    },
@@ -22,12 +22,11 @@ const userSchema = new mongoose.Schema({
          validator: validator.isEmail,
          message: 'Invalid email',
       },
-      unique: true,
    },
    password: {
       type: String,
       minlength: [6, 'Password should be at least 6 characters'],
-      maxlength: [66, 'Password should be no more than 66 characters'],
+      maxlength: [12, 'Password should be no more than 12 characters'],
       required: [true, 'Password is required'],
    },
    aboutMe: {
