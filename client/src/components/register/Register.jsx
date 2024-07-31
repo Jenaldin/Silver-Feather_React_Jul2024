@@ -19,7 +19,7 @@ export default function Register() {
       try {
          const { username, email, password, rePass } = data;
          await registerHandler(username, email, password, rePass);
-         //navigate('/');
+         navigate('/');
       } catch (error) {
          console.error('Register error:', error.message);
       }
