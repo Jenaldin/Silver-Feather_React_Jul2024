@@ -9,7 +9,7 @@ const post = require('./postRoute');
 const comment = require('./commentRoute');
 
 router.use('/', test);
-// router.use('/user', auth);
+router.use('/user', auth);
 // router.use('/character', character);
 // router.use('/campaign', campaign);
 // router.use('/session', session);
