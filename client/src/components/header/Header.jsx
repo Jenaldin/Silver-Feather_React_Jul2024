@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 import { Link, useLocation } from 'react-router-dom';
 import { theme } from '../../../public/styles/muiTheme';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function Header() {
    const location = useLocation();
@@ -19,7 +19,7 @@ export default function Header() {
       },
    });
 
-   const {isAuthenticated, username} = useContext(AuthContext);
+   const {isAuthenticated, username} = useAuthContext();
 
    return (
       <div>
