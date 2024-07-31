@@ -29,7 +29,12 @@ export default function About() {
                      sea. A warm welcome in either case!
                   </p>
                   <p>
-                     This web app is academic and not intended for commercial use. It
+                     This web app is academic and not intended for commercial use. A
+                     big portion of it is still under construction, so if you stumble
+                     on a page with that sign, expect Tavern 2.0 in the future.
+                  </p>
+                  <p>
+                     The Silver Feather Tavern
                      represents my React beginner level proficiency and skills, and
                      will serve for my course defense. It is inspired by other web and
                      desktop apps used for playing Dungeons and Dragons such as D&D

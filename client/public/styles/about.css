@@ -1,7 +1,7 @@
 #about-me {
 	max-width: 950px;
 	min-width: 350px;
-	margin: 45px auto;;
+	margin: 55px auto auto auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,10 +9,10 @@
    color: #191818de;
 }
 
-#text-intro {
+#text-intro, #greetings {
    text-align: center;
-	margin-bottom: 20px;
-   color: #191818de;
+	margin-bottom: 15px;
+   color: #2D543A;
 }
 
 .cards-container {
@@ -23,8 +23,8 @@
 
 .card {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	margin-bottom: 20px;
+	padding: 15px;
+	margin-bottom: 10px;
 	border-radius: 8px;
 	background-color: #fff4e0;
 	color: #191818de;
