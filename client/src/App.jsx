@@ -13,7 +13,6 @@ import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
 
-
   return (
     <AuthContextProvider >
       <ThemeProvider theme={theme}>
