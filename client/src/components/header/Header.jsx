@@ -19,7 +19,7 @@ export default function Header() {
       },
    });
 
-   const {isAuthenticated} = useContext(AuthContext)
+   const {isAuthenticated, username} = useContext(AuthContext);
 
    return (
       <div>
@@ -38,10 +38,10 @@ export default function Header() {
                   </Link>
                </Typography>
                <Link to="/adventurers-board" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/adventurers-board')}>Adventurer's Board</Button>
+                  <Button sx={buttonStyle('/adventurers-board')}>Adventurers Guild Board</Button>
                </Link>
                <Link to="/my-boards" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/my-boards')} >My Boards</Button>
+                  <Button sx={buttonStyle('/my-boards')} > {username}'s Boards and Profile</Button>
                </Link>
                <Link to="/sign-out" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/sign-out')}>Sign out</Button>
@@ -66,7 +66,7 @@ export default function Header() {
                   </Link>
                </Typography>
                <Link to="/adventurers-board" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/adventurers-board')}>Adventurer's Board</Button>
+                  <Button sx={buttonStyle('/adventurers-board')}>Adventurers Gild Board</Button>
                </Link>
                <Link to="/register" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/register')}>Register</Button>
