@@ -40,8 +40,8 @@ export default function Header() {
                <Link to="/adventurers-board" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/adventurers-board')}>Adventurers Guild Board</Button>
                </Link>
-               <Link to="/my-boards" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/my-boards')} > {username}'s Boards and Profile</Button>
+               <Link to={`/my-boards/${username}`} style={{ textDecoration: 'none' }}>
+                  <Button sx={buttonStyle(`/my-boards/${username}`)} > {username}'s Boards</Button>
                </Link>
                <Link to="/sign-out" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/sign-out')}>Sign out</Button>
