@@ -35,15 +35,15 @@ const userSchema = new mongoose.Schema({
       default: ' ',
    },
    charactersOwned: [{
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: 'Character',
    }],
    campaignsOwned: [{
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: 'Campaign',
    }],
    friends: [{ 
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Types.ObjectId, 
       ref: 'User' ,
    }],
 });
