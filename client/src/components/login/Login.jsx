@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
@@ -7,11 +7,22 @@ import LoginIcon from '@mui/icons-material/Login';
 
 import { theme } from '../../../public/styles/muiTheme';
 
+import { useLogin } from "../../hooks/useAuth";
+
 export default function Login() {
    const { handleSubmit, register, formState: { errors }, trigger } = useForm();
 
-   const onSubmit = (data) => {
-      console.log(data);
+   const navigate = useNavigate();
+   const loginHandler = useLogin();
+
+   const onSubmit = async (data) => {
+      try {
+         const { username, password } = data;
+         await loginHandler(username, password);
+         navigate('/');
+      } catch (error) {
+         console.error('Login error:', error.message);
+      }
    };
 
    return (

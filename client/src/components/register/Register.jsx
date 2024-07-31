@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
@@ -7,11 +7,22 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { theme } from '../../../public/styles/muiTheme';
 
+import { useRegister } from "../../hooks/useAuth";
+
 export default function Register() {
    const { handleSubmit, register, formState: { errors }, watch, trigger } = useForm();
 
-   const onSubmit = (data) => {
-      console.log(data);
+   const navigate = useNavigate();
+   const registerHandler = useRegister();
+
+   const onSubmit = async (data) => {
+      try {
+         const { username, email, password, rePass } = data;
+         await registerHandler(username, email, password, rePass);
+         //navigate('/');
+      } catch (error) {
+         console.error('Register error:', error.message);
+      }
    };
 
    const password = watch('password');
@@ -141,99 +152,3 @@ export default function Register() {
       </Container>
    );
 }
-
-// export default function Register() {
-//    const handleSubmit = (ev) => {
-//       ev.preventDefault();
-//       const data = new FormData(ev.currentTarget);
-//       console.log({
-//          username: data.get('username'),
-//          email: data.get('email'),
-//          password: data.get('password'),
-//          rePassword: data.get('rePass'),
-//       });
-//    };
-
-//    return (
-//       <Container component="main" maxWidth="xs">
-//          <CssBaseline />
-//          <Box
-//             sx={{
-//                marginTop: 15,
-//                display: 'flex',
-//                flexDirection: 'column',
-//                alignItems: 'center',
-//             }}
-//          >
-//             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-//                <LockOutlinedIcon />
-//             </Avatar>
-//             <Typography component="h1" variant="h5">
-//                Register
-//             </Typography>
-//             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-//                <Grid container spacing={2}>
-//                   <Grid item xs={12}>
-//                      <TextField
-//                         autoComplete="user-name"
-//                         name="username"
-//                         required
-//                         fullWidth
-//                         id="username"
-//                         label="User Name"
-//                         autoFocus
-//                      />
-//                   </Grid>
-//                   <Grid item xs={12}>
-//                      <TextField
-//                         required
-//                         fullWidth
-//                         id="email"
-//                         label="Email Address"
-//                         name="email"
-//                         autoComplete="email"
-//                      />
-//                   </Grid>
-//                   <Grid item xs={12}>
-//                      <TextField
-//                         required
-//                         fullWidth
-//                         name="password"
-//                         label="Password"
-//                         type="password"
-//                         id="password"
-//                         autoComplete="new-password"
-//                      />
-//                   </Grid>
-//                   <Grid item xs={12}>
-//                      <TextField
-//                         required
-//                         fullWidth
-//                         name="rePass"
-//                         label="Repeat Password"
-//                         type="password"
-//                         id="rePass"
-//                         autoComplete="re-pass"
-//                      />
-//                   </Grid>
-//                </Grid>
-//                <Button
-//                   type="submit"
-//                   fullWidth
-//                   variant="contained"
-//                   sx={{ mt: 3, mb: 2 }}
-//                >
-//                   Register
-//                </Button>
-//                <Grid container justifyContent="flex-end">
-//                   <Grid item>
-//                      <Link to="/sign-in" style={{ textDecoration: 'none', color: theme.palette.primary.dark }}>
-//                         Already a member of the Tavern? Sign in!
-//                      </Link>
-//                   </Grid>
-//                </Grid>
-//             </Box>
-//          </Box>
-//       </Container>
-//    );
-// }

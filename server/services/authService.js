@@ -4,7 +4,8 @@ const generateToken = require('../utils/tkn');
 const { userModel } = require('../models/index');
 
 exports.register = async (userData) => {
-   if (userData.password !== userData.rePassword) {
+   console.log(userData);
+   if (userData.password !== userData.rePass) {
       throw new Error('Password mismatch');
    };
 
