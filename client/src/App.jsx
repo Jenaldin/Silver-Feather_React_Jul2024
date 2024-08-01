@@ -25,6 +25,7 @@ import PostAdd from './components/post/PostAdd';
 import PostDetails from './components/post/PostDetails';
 import PostEdit from './components/post/PostEdit';
 import PrivateGuard from './components/common/PrivateGuard';
+import PublicGuard from './components/common/PublicGuard';
 
 function App() {
 
@@ -37,10 +38,11 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/about' element={<About />} />
-              <Route path="/not-found" element={<NotFound />} />
-              <Route element={<PrivateGuard />}></Route>
-              <Route path='/register' element={<Register />} />
-              <Route path='/sign-in' element={<Login />} />
+              <Route path='/not-found' element={<NotFound />} />
+              <Route element={<PublicGuard />}>
+                <Route path='/register' element={<Register />} />
+                <Route path='/sign-in' element={<Login />} />
+              </Route>
               <Route path='/adventurers-board' element={<PostList />} />
               <Route element={<PrivateGuard />}>
                 <Route path='/adventurers-board/posts/new' element={<PostAdd />} />
@@ -56,7 +58,7 @@ function App() {
                 <Route path='/my-boards/:username/campaigns/:id' element={<CampaignDetails />} />
                 <Route path='/my-boards/:username/campaigns/edit/:id' element={<CampaignEdit />} />
               </Route>
-              <Route path="*" element={<Navigate to="/not-found" replace />} />
+              <Route path='*' element={<Navigate to='/not-found' replace />} />
             </Routes>
           </main>
         </div>
