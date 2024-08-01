@@ -46,6 +46,32 @@ const campaignSchema = new mongoose.Schema({
          default: Date.now,
       },
    }],
+   isPublic: {
+      type: Boolean,
+      default: false
+   },
+   isPublished: {
+      type: Boolean,
+      default: false
+   },
+   createdAt: {
+      type: Date,
+      default: Date.now,
+   },
+   owner: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+   },
+   sessionsOfCampaign:[{
+      user: {
+         type: mongoose.Types.ObjectId,
+         ref: 'Session'
+      },
+      addedDate: {
+         type: Date,
+         default: Date.now,
+      },
+   }],
    charactersPlaying: [{
       type: mongoose.Types.ObjectId,
       ref: 'Character',
@@ -58,32 +84,6 @@ const campaignSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'Character',
    }],
-   sessionsOfCampaign:[{
-      user: {
-         type: mongoose.Types.ObjectId,
-         ref: 'Session'
-      },
-      addedDate: {
-         type: Date,
-         default: Date.now,
-      },
-   }],
-   createdAt: {
-      type: Date,
-      default: Date.now,
-   },
-   owner: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User'
-   },
-   isPublic: {
-      type: Boolean,
-      default: false
-   },
-   isPublished: {
-      type: Boolean,
-      default: false
-   },
 });
 
 const Campaign = mongoose.model('Campaign', campaignSchema);
