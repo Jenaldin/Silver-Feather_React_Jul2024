@@ -3,5 +3,5 @@ import { useAuthContext } from "../../context/AuthContext";
 
 export default function PrivateGuard(){
    const { isAuthenticated } = useAuthContext();
-   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
+   return isAuthenticated ? <Outlet /> : <Navigate to='/sign-in' />
 }
