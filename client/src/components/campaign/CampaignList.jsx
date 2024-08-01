@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, Button, Divider } from '@mui/material';
 
 import * as campaignsAPI from '../../api/campaigns-api';
 import { useAuthContext } from "../../context/AuthContext";
@@ -31,20 +31,29 @@ export default function CampaignList() {
             Create New Campaign
          </Button>
          </Link>
-         <div className="gallery">
+         <div>
+         <Divider variant="middle" />
+         </div>
+         
+         <div id="title" className="heading-small">
+            <h5>And here is a list of the campaigns you have already created:</h5>
+         </div>
+         <div className="gallery" >
+         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', margin: '15px' }} >
             {campaigns.length === 0 ? (
-               <Typography variant="body1">No Campaigns found</Typography>
+               <Typography variant="body1">Unfortunately, no campaigns found. Want to create one?</Typography>
             ) : (
                campaigns.slice(0, visibleItems).map((item, index) => (
-                  <Card key={index} sx={{ maxWidth: 450, margin: '1rem', height: "200px" }}>
+                  <Card key={index} sx={{ maxWidth: 500, margin: '1rem', height: "250px" }}>
                      <Link className="card-links" to={`/my-boards/${username}/campaigns/${item.id}`} style={{ textDecoration: 'none' }}>
                         <CardActionArea>
                            <CardMedia
                               component="img"
-                              height="150"
+                              height={item.imageUrl ? "150" : "50"}
                               image={item.imageUrl ? item.imageUrl : "/images/logo.png"}
                               alt={item.title}
                            />
+                           <Divider variant="middle" />
                            <CardContent>
                               <Typography gutterBottom variant="h5" component="div">
                                  {item.title}
@@ -55,6 +64,7 @@ export default function CampaignList() {
                   </Card>
                ))
             )}
+            </div>
             {visibleItems < campaigns.length && (
                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
                   <Button variant="outlined" style={{ fontWeight: 'bold', fontStyle: 'italic' }} onClick={loadMoreItems}>
