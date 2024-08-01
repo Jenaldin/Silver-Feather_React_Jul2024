@@ -44,8 +44,8 @@ export default function CampaignList() {
                <Typography variant="h5">Unfortunately, we did not find any. Crate your first one!</Typography>
             ) : (
                campaigns.slice(0, visibleItems).map((item, index) => (
-                  <Card key={index} sx={{ maxWidth: 500, margin: '1rem', height: "250px" }}>
-                     <Link className="card-links" to={`/my-boards/${username}/campaigns/${item.id}`} style={{ textDecoration: 'none' }}>
+                  <Card key={index} sx={{ maxWidth: 500, margin: '1rem', height: "200px" }}>
+                     <Link className="card-links" to={`/my-boards/${username}/campaigns/${item._id}`} style={{ textDecoration: 'none' }}>
                         <CardActionArea>
                            <CardMedia
                               component="img"
