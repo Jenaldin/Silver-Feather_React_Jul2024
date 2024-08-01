@@ -30,5 +30,5 @@ exports.login = async ({ username, password }) => {
    };
 
    const token = await generateToken(user);
-   return { token, username: user.username, id: user._id.toString() };
+   return { token, username: user.username, id: user._id };
 };
