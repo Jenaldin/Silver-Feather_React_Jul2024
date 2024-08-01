@@ -23,7 +23,7 @@ const loginUser = async (req, res) => {
       const result = await authService.login(loginData);
       const { token, username, id } = result;
       res.cookie('auth', token, { maxAge: 3000 * 60 * 60, httpOnly: true });
-      res.status(200).json({ message: 'Login successful', username, id });
+      res.status(200).json({ message: 'Login successful', token, username, id });
    } catch (err) {
       const errMsg = err.message;
       if (err.name === 'ValidationError') {

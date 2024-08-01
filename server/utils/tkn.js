@@ -1,5 +1,5 @@
 const jwt = require('./jwt');
-const secret = process.env.SECRET;
+const secret = process.env.SECRET || 'iowjf[qn395834rmcg-cnlerqx2309#%%#Q%4tcf1xu';
 
 function generateToken(user) {
    const payload = {

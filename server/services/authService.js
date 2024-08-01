@@ -4,7 +4,6 @@ const generateToken = require('../utils/tkn');
 const { userModel } = require('../models/index');
 
 exports.register = async (userData) => {
-   console.log(userData);
    if (userData.password !== userData.rePass) {
       throw new Error('Password mismatch');
    };
@@ -22,14 +21,14 @@ exports.register = async (userData) => {
 exports.login = async ({ username, password }) => {
    const user = await userModel.findOne({ username });
    if (!user) {
-      throw new Error('Email or password is invalid');
+      throw new Error('Username or password is invalid');
    };
 
    const isValid = await bcrypt.compare(password, user.password);
    if (!isValid) {
-      throw new Error('Email or password is invalid');
+      throw new Error('Username or password is invalid');
    };
 
    const token = await generateToken(user);
-   return { token, username: user.username, id: user._id };
+   return { token, username: user.username, id: user._id.toString() };
 };
