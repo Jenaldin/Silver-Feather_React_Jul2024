@@ -41,7 +41,7 @@ export default function CampaignList() {
          <div className="gallery" >
          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', margin: '15px' }} >
             {campaigns.length === 0 ? (
-               <Typography variant="body1">Unfortunately, no campaigns found. Want to create one?</Typography>
+               <Typography variant="h5">Unfortunately, we did not find any. Crate your first one!</Typography>
             ) : (
                campaigns.slice(0, visibleItems).map((item, index) => (
                   <Card key={index} sx={{ maxWidth: 500, margin: '1rem', height: "250px" }}>
