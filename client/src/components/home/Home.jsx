@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
    return (
-      <section id="home" className="main-content">
-         <div id="titles" className="home-titles">
+      <section id="section-wrapper" className="main-content">
+         <div id="titles" className="main-titles">
             <h1>Welcome to the Silver Feather Tavern!</h1>
             <h4>Find like-minded companions and go on adventures together!</h4>
          </div>

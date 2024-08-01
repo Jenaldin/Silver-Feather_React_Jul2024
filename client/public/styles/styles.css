@@ -100,7 +100,7 @@ table tr:hover td {
 
 hr {margin: 2rem 0;}
 
-#home {
+#section-wrapper {
 	max-width: 950px;
 	min-width: 350px;
 	margin: 55px auto auto auto;
@@ -110,7 +110,7 @@ hr {margin: 2rem 0;}
 	padding: 20px;
 }
 
-.home-titles {
+.main-titles {
 	color: #2D543A;
 	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -5,8 +5,8 @@ import { theme } from '../common/muiTheme';
 
 export default function NotFound() {
    return (
-      <section id="home" className='main-content'>
-         <div id="titles" className='home-titles'>
+      <section id="section-wrapper" className='main-content'>
+         <div id="titles" className='main-titles'>
             <h1>The path you are looking for does not exist!</h1>
             <h4>You might have lost yourself in the labyrinth, adventurer...</h4>
          </div>

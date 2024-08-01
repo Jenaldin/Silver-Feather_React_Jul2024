@@ -1,7 +1,7 @@
 export default function CharacterAdd() {
    return (
-      <section id="home" className="main-content">
-         <div id="titles" className="home-titles">
+      <section id="section-wrapper" className="main-content">
+         <div id="titles" className="main-titles">
             <h1>This "room" in the Tavern does not exist yet!</h1>
             <h4>
                It is a planned expansion of the Silver Feather Tavern.
