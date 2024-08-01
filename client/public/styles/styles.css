@@ -1,7 +1,5 @@
-@import 'home.css';
 @import 'about.css';
 @import 'profile-details.css';
-@import 'coming-soon.css';
 
 :root {
    background: #fee4cb;
@@ -101,3 +99,59 @@ table tr:hover td {
 }
 
 hr {margin: 2rem 0;}
+
+#home {
+	max-width: 950px;
+	min-width: 350px;
+	margin: 55px auto auto auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.home-titles {
+	color: #2D543A;
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#titles, #text, #text-2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.cards-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.card-players, .card-dms {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	background-color: #fff4e0;
+	width: 43%;
+	color: #191818de;
+}
+
+.card-players h5, .card-dms h5 {
+	margin-bottom: 10px;
+}
+
+.card-players ul, .card-dms ul {
+	list-style-type: disc;
+	padding-left: 20px;
+}
+
+.card-links{
+	font-family: Roboto, sans-serif;
+	text-decoration: none;
+	color:#2D543A;
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading-small {
+	color: #191818de
+}
