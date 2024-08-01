@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-import { theme } from '../../../public/styles/muiTheme';
+import { theme } from '../common/muiTheme';
 
 import { useRegister } from "../../hooks/useAuth";
 

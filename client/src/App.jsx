@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../public/styles/muiTheme';
+import { theme } from './components/common/muiTheme';
 
 import { AuthContextProvider } from './context/AuthContext';
 

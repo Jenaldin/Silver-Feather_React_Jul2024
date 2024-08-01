@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 import { Link, useLocation } from 'react-router-dom';
-import { theme } from '../../../public/styles/muiTheme';
+import { theme } from '../common/muiTheme';
 import { useAuthContext } from '../../context/AuthContext';
 
 export default function Header() {

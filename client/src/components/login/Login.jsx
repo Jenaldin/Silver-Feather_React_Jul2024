@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LoginIcon from '@mui/icons-material/Login';
 
-import { theme } from '../../../public/styles/muiTheme';
+import { theme } from '../common/muiTheme';
 
 import { useLogin } from "../../hooks/useAuth";
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../../public/styles/styles.css';
-import { theme } from '../../../public/styles/muiTheme';
+import { theme } from '../common/muiTheme';
 
 export default function NotFound() {
    return (

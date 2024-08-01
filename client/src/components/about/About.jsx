@@ -2,8 +2,6 @@ import React from "react";
 import { Email, LinkedIn, GitHub, Tag } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-import "../../../public/styles/styles.css";
-
 export default function About() {
    return (
       <section id="about-me">
