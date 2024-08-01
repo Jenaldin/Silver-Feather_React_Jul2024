@@ -29,9 +29,10 @@ export default function Register() {
    const rePass = watch('rePass');
 
    return (
-      <Container component="main" maxWidth="xs">
+      <section id="section-wrapper">
+      <Container component="main" maxWidth="xs" className="card-players">
          <CssBaseline />
-         <Box sx={{ marginTop: 15, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+         <Box sx={{ marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                <LockOutlinedIcon />
             </Avatar>
@@ -150,5 +151,6 @@ export default function Register() {
             </Box>
          </Box>
       </Container>
+      </section>
    );
 }
