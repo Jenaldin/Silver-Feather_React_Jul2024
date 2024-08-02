@@ -166,10 +166,10 @@ export default function CampaignDetails() {
                </DialogContentText>
             </DialogContent>
             <DialogActions>
-               <Button variant="contained" onClick={() => setOpenDialog(false)} color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+               <Button variant="outlined" onClick={() => setOpenDialog(false)} color="secondary" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
                   Cancel
                </Button>
-               <Button variant="outlined" onClick={handleDeleteConfirmed} color="secondary" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+               <Button variant="contained" onClick={handleDeleteConfirmed} color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
                   Confirm and Delete
                </Button>
             </DialogActions>
