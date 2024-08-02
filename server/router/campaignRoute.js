@@ -7,6 +7,8 @@ const { isCampaignOwner } = require('../middlewares/ownerMiddleware');
 
 router.get('/:userId', isAuth , CampaignController.getMyCampaigns);
 
+router.get('/details/:campaignId', CampaignController.getCampaign);
+
 router.post('/create', isAuth, CampaignController.createCampaign)
 
 module.exports = router;

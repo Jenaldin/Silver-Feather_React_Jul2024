@@ -1,4 +1,4 @@
-//ADD SERVICES
+const campaignService = require('../services/campaignService');
 
 exports.isCharacterOwner = async (req, res, next) => {
    const characterId = req.params.campaignId

@@ -16,3 +16,14 @@ export const createCampaign = async (data) => {
   const result = await requester.post(`${BASE_URL}/create`, data)
   return result;
 }
+
+export const getCampaign = async (campaignId) => {
+  try {
+    const result = await requester.get(`${BASE_URL}/details/${campaignId}`);
+    console.log("campaigns api to get campaign returns: ", result);
+    return result;
+  } catch (error) {
+    console.log('Error fetching a campaign:', error.message);
+    throw new Error('Unable to fetch campaign. Please try again later.');
+  }
+};

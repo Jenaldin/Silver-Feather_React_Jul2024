@@ -11,6 +11,17 @@ const getMyCampaigns = async (req, res) =>{
    }
 };
 
+const getCampaign = async (req, res) => {
+   try {
+      const item = await campaignService.getOneCampaign(req.params.campaignId);
+      console.log(item);
+      res.send(item);
+   } catch (error) {
+      const errMsg = error.message;
+      res.send({ message: errMsg })
+   }
+};
+
 const createCampaign = async (req, res) => {
    const payload = req.body;
    const ownerId = req.user._id;
@@ -25,5 +36,6 @@ const createCampaign = async (req, res) => {
 
 module.exports = {
    getMyCampaigns,
+   getCampaign,
    createCampaign,
 }

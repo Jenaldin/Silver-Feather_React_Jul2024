@@ -156,3 +156,8 @@ hr {margin: 2rem 0;}
 	color: #191818de
 }
 
+.details-label {
+	font-weight: bold;
+	font-style: italic;
+	color:#2D543A;
+}
