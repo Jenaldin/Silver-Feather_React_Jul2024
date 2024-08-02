@@ -62,7 +62,7 @@ export default function Register() {
                         fullWidth
                         name="username"
                         id="username"
-                        label="Username"
+                        label="Username *"
                         type="input"
                         error={!!errors.username}
                         helperText={errors.username?.message}
@@ -90,7 +90,7 @@ export default function Register() {
                         fullWidth
                         name="email"
                         id="email"
-                        label="Email"
+                        label="Email *"
                         type="input"
                         error={!!errors.email}
                         helperText={errors.email?.message}
@@ -113,7 +113,7 @@ export default function Register() {
                         })}
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Password *"
                         type="password"
                         id="password"
                         error={!!errors.password}
@@ -129,7 +129,7 @@ export default function Register() {
                         })}
                         fullWidth
                         name="rePass"
-                        label="Repeat Password"
+                        label="Repeat Password *"
                         type="password"
                         id="rePass"
                         error={!!errors.rePass}

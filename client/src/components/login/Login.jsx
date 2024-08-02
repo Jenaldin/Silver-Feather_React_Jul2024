@@ -51,7 +51,7 @@ export default function Login() {
                         fullWidth
                         name="username"
                         id="username"
-                        label="Username"
+                        label="Username *"
                         type="input"
                         error={!!errors.username}
                         helperText={errors.username?.message}
@@ -66,7 +66,7 @@ export default function Login() {
                         })}
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Password *"
                         type="password"
                         id="password"
                         error={!!errors.password}

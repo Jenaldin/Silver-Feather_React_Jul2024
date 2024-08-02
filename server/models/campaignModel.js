@@ -4,7 +4,7 @@ const validator = require('validator');
 const campaignSchema = new mongoose.Schema({
    title: {
       type: String,
-      minlength: [2, 'Title min length is 2 symbols'],
+      minlength: [10, 'Title min length is 10 symbols'],
       maxlength: [256, 'Title max length is 256 symbols'],
       required: [true, 'Title is required'],
    },

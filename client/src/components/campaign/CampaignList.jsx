@@ -9,7 +9,7 @@ import { useAuthContext } from "../../context/AuthContext";
 export default function CampaignList() {
    const [campaigns, setCampaigns] = useState([]);
    const [visibleItems, setVisibleItems] = useState(3);
-   const { username, userId } = useAuthContext()
+   const { username, userId } = useAuthContext();
 
    useEffect(() => {
       campaignsAPI.getAll(userId)
