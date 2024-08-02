@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Button,Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
@@ -10,6 +10,7 @@ import SessionList from "./session/SessionList";
 export default function CampaignDetails() {
    const [campaignDetails, setCampaignDetails] = useState({});
    const [openDialog, setOpenDialog] = useState(false);
+   const navigate = useNavigate()
    const { username, userId } = useAuthContext();
    const { id } = useParams();
 
@@ -21,12 +22,10 @@ export default function CampaignDetails() {
 
    const handleDeleteConfirmed = async () => {
       try {
-         await campaignsAPI.deleteCampaign(id);
-         Navigate(`/my-boards/${username}/campaigns`);
+         campaignsAPI.deleteCampaign(id).then(() => navigate(`/my-boards/${username}/campaigns`));
       } catch (err) {
          console.log(err.message);
       }
-      setOpenDialog(false);
    };
 
    const campaignDeleteHandler = async () => {
