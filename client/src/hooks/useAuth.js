@@ -2,7 +2,7 @@ import { login, register, logout } from "../api/auth-api"
 import { AuthContext, useAuthContext } from "../context/AuthContext";
 
 export const useLogin = () => {
-   const {changeAuthState} = useAuthContext(AuthContext);
+   const {changeAuthState} = useAuthContext();
    
    const loginHandler = async (username, password) => {
       try {
@@ -18,7 +18,7 @@ export const useLogin = () => {
 };
 
 export const useRegister = () => {
-   const {changeAuthState} = useAuthContext(AuthContext);
+   const {changeAuthState} = useAuthContext();
 
    const registerHandler = async (username, email, password, rePass) => {
       try {
