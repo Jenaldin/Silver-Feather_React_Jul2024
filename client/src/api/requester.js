@@ -1,6 +1,10 @@
+import { getAccessToken } from "../utils/authUtils";
+
 async function requester(method, url, data) {
    const options = {};
-   const token = localStorage.getItem('token');
+   //const token = localStorage.getItem('token');
+
+   const token = getAccessToken();
 
    if (token) {
       options.headers = {
