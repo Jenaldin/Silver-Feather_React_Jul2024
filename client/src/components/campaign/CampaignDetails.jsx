@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 import { Button } from "@mui/material";
 
@@ -18,24 +18,26 @@ export default function CampaignDetails() {
          .catch(err => console.error('Error fetching campaigns:', err.message));
    }, []);
 
-   // const isOwner = userId === item._owner;
-
    const itemDeleteHandler = async () => {
       const confirmDel = confirm(`Are you sure you want to delete this campaign? This action cannot be reversed`);
       if (!confirmDel) {
          return;
       }
-
-      // try {
-      //    await catalogueAPI.remove(itemId);
-      //    navigate('/');
-      // } catch (err) {
-      //    console.log(err.message);
-      // }
+      try {
+         await campaignsAPI.deleteCampaign( id);
+         Navigate(`/my-boards/${username}/campaigns`);
+      } catch (err) {
+         console.log(err.message);
+      }
    };
 
    return (
       <section id="section-wrapper">
+         <Link to={`/my-boards/${username}/campaigns`} style={{ textDecoration: 'none' }}>
+            <Button variant="outlined" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+               Back to DM's Layer
+            </Button>
+         </Link>
          <div id="title" className="main-titles">
             <h2>The "{campaignDetails.title}" information:</h2>
          </div>
@@ -49,16 +51,20 @@ export default function CampaignDetails() {
                <div className="title-card-profile-section" style={{ margin: "0" }}>
                   <h4 style={{ marginBottom: "0" }}>Campaign details:</h4>
                </div>
-               <div className="buttons-details-item" style={{ margin: "25px" }} >
-                  <Link to={`/my-boards/${username}/campaigns/edit/${id}`} style={{ textDecoration: 'none' }}>
-                     <Button variant="contained" style={{ color: 'primary', fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
-                        Edit Campaign
-                     </Button>
-                  </Link>
-                  <Button onClick={itemDeleteHandler} variant="contained" color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
-                     Delete Campaign
-                  </Button>
-               </div>
+               {userId === campaignDetails?.owner?._id && (
+                  <>
+                     <div className="buttons-details-item" style={{ margin: "25px" }} >
+                        <Link to={`/my-boards/${username}/campaigns/edit/${id}`} style={{ textDecoration: 'none' }}>
+                           <Button variant="contained" style={{ color: 'primary', fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+                              Edit Campaign
+                           </Button>
+                        </Link>
+                        <Button onClick={itemDeleteHandler} variant="contained" color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+                           Delete Campaign
+                        </Button>
+                     </div>
+                  </>
+               )}
                <div className="text-card-profile-section">
                   <h6 className="details-label">
                      Created on:
@@ -109,29 +115,33 @@ export default function CampaignDetails() {
                      {campaignDetails.description}
                   </p>
                </div>
-               <div className="text-card-profile-section">
-                  <h6 className="details-label">
-                     DM's Notes:
-                  </h6>
-                  {campaignDetails.dmNotes && campaignDetails.dmNotes.length > 0 ? (
-   campaignDetails.dmNotes.map((noteObj, index) => (
-      <div key={index}>
-         <p className="details-item-content">
-            From Date: {new Date(noteObj.addedDate).toLocaleDateString('en-US', {
-               day: 'numeric',
-               month: 'long',
-               year: 'numeric',
-            })}
-         </p>
-         <p className="details-item-content">
-            Note: {noteObj.note}
-         </p>
-      </div>
-   ))
-) : (
-   <p className="details-item-content">No notes available</p>
-)}
-               </div>
+               {userId === campaignDetails?.owner?._id && (
+                  <>
+                     <div className="text-card-profile-section">
+                        <h6 className="details-label">
+                           DM's Notes:
+                        </h6>
+                        {campaignDetails.dmNotes && campaignDetails.dmNotes.length > 0 ? (
+                           campaignDetails.dmNotes.map((noteObj, index) => (
+                              <div key={index}>
+                                 <p className="details-item-content">
+                                    From Date: {new Date(noteObj.addedDate).toLocaleDateString('en-US', {
+                                       day: 'numeric',
+                                       month: 'long',
+                                       year: 'numeric',
+                                    })}
+                                 </p>
+                                 <p className="details-item-content">
+                                    Note: {noteObj.note}
+                                 </p>
+                              </div>
+                           ))
+                        ) : (
+                           <p className="details-item-content">No notes available</p>
+                        )}
+                     </div>
+                  </>
+               )}
             </div>
             <div className="card-profile-section" style={{ flexGrow: "1" }}>
                <div className="title-card-profile-section" style={{ margin: "0" }}>

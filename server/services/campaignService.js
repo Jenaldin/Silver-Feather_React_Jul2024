@@ -26,7 +26,6 @@ exports.getOneCampaign = async (campaignId) => {
 }
 
 exports.addNew = async (payload, ownerId) => {
-   console.log(payload);
    const createdCampaign = await campaignModel.create({
       ...payload,
       owner: ownerId,
@@ -34,3 +33,5 @@ exports.addNew = async (payload, ownerId) => {
    await userModel.findByIdAndUpdate(ownerId, { $push: { campaignsOwned: createdCampaign._id } });
    return createdCampaign;
 };
+
+exports.deleteCurrent = async (campaignId) => await campaignModel.findByIdAndDelete(campaignId);

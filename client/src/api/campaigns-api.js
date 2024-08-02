@@ -27,3 +27,13 @@ export const getCampaign = async (campaignId) => {
     throw new Error('Unable to fetch campaign. Please try again later.');
   }
 };
+
+export const deleteCampaign = async (campaignId) => {
+  try {
+    const result = await requester.del(`${BASE_URL}/delete/${campaignId}`);
+    return result;
+  } catch (error) {
+    console.log('Error delete a campaign:', error.message);
+    throw new Error('Unable to delete campaign. Please try again later.');
+  }
+}

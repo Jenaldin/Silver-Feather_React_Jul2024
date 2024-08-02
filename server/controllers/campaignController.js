@@ -14,7 +14,6 @@ const getMyCampaigns = async (req, res) =>{
 const getCampaign = async (req, res) => {
    try {
       const item = await campaignService.getOneCampaign(req.params.campaignId);
-      console.log(item);
       res.send(item);
    } catch (error) {
       const errMsg = error.message;
@@ -32,10 +31,22 @@ const createCampaign = async (req, res) => {
       const errMsg = error.message;
       res.send({ message: errMsg })
    }
-}
+};
+
+const deleteCampaign = async (req, res) => {
+   const { campaignId } = req.params;
+   try {
+      await campaignService.deleteCurrent(campaignId);
+      res.json({ message: 'Campaign deleted successfully' });
+   } catch (error) {
+      const errMsg = error.message;
+      res.send({ message: errMsg })
+   }
+};
 
 module.exports = {
    getMyCampaigns,
    getCampaign,
    createCampaign,
+   deleteCampaign,
 }

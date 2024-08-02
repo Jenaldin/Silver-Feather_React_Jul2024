@@ -10,7 +10,7 @@ export const useLogin = () => {
          changeAuthState(result);
          return result;
       } catch (err) {
-         console.log(err.message);
+         console.log("Error in loginHelper: ", err.message);
       };
    };
 
@@ -26,7 +26,7 @@ export const useRegister = () => {
          changeAuthState(result);
          return result;
       } catch (err) {
-         console.log(err.message);
+         console.log("Error in registerHelper: ", err.message);
       };
    };
 
@@ -41,7 +41,7 @@ export const useLogout = () => {
          localLogout()
          await logout();
       } catch (err) {
-         console.log(err.message);
+         console.log("Error in logoutHelper: ",err.message);
       };
    };
 
