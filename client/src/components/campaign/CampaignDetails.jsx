@@ -120,7 +120,7 @@ export default function CampaignDetails() {
                   <>
                      <div className="text-card-profile-section">
                         <h6 className="details-label">
-                           DM's Notes:
+                           DM's Notes - visible only to the DM:
                         </h6>
                         {campaignDetails.dmNotes && campaignDetails.dmNotes.length > 0 ? (
                            campaignDetails.dmNotes.map((noteObj, index) => (

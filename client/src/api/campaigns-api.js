@@ -17,6 +17,11 @@ export const createCampaign = async (data) => {
   return result;
 }
 
+export const updateCampaign = async (data, campaignId) => {
+  const result = await requester.put(`${BASE_URL}/edit/${campaignId}`, data)
+  return result;
+}
+
 export const getCampaign = async (campaignId) => {
   try {
     const result = await requester.get(`${BASE_URL}/details/${campaignId}`);

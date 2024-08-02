@@ -1,5 +1,4 @@
-import { createCampaign } from "../api/campaigns-api";
-
+import { createCampaign, updateCampaign } from "../api/campaigns-api";
 
 export function useCreateCampaign(){
    const createCampaignHandler = async (data) => {
@@ -7,4 +6,12 @@ export function useCreateCampaign(){
    };
 
    return createCampaignHandler;
+}
+
+export function useUpdateCampaign(){
+   const updateCampaignHandler = async (data) => {
+      await updateCampaign(data);
+   };
+
+   return updateCampaignHandler;
 }
