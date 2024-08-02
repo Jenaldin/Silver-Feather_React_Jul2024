@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
-import { Button } from "@mui/material";
+import { Button,Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
 import { useAuthContext } from "../../context/AuthContext";
 import * as campaignsAPI from '../../api/campaigns-api';
@@ -9,6 +9,7 @@ import SessionList from "./session/SessionList";
 
 export default function CampaignDetails() {
    const [campaignDetails, setCampaignDetails] = useState({});
+   const [openDialog, setOpenDialog] = useState(false);
    const { username, userId } = useAuthContext();
    const { id } = useParams();
 
@@ -18,17 +19,18 @@ export default function CampaignDetails() {
          .catch(err => console.error('Error fetching campaigns:', err.message));
    }, []);
 
-   const itemDeleteHandler = async () => {
-      const confirmDel = confirm(`Are you sure you want to delete this campaign? This action cannot be reversed`);
-      if (!confirmDel) {
-         return;
-      }
+   const handleDeleteConfirmed = async () => {
       try {
-         await campaignsAPI.deleteCampaign( id);
+         await campaignsAPI.deleteCampaign(id);
          Navigate(`/my-boards/${username}/campaigns`);
       } catch (err) {
          console.log(err.message);
       }
+      setOpenDialog(false);
+   };
+
+   const campaignDeleteHandler = async () => {
+      setOpenDialog(true);
    };
 
    return (
@@ -59,7 +61,7 @@ export default function CampaignDetails() {
                               Edit Campaign
                            </Button>
                         </Link>
-                        <Button onClick={itemDeleteHandler} variant="contained" color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+                        <Button onClick={campaignDeleteHandler} variant="contained" color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
                            Delete Campaign
                         </Button>
                      </div>
@@ -152,6 +154,26 @@ export default function CampaignDetails() {
                </div>
             </div>
          </div>
+
+         <Dialog open={openDialog} onClose={() => setOpenDialog(false)} >
+            <DialogTitle className="title-card-profile-section" style={{ fontWeight: 'bold', textAlign: 'center' }}>Confirm Deletion of "{campaignDetails.title}" Campaign</DialogTitle>
+            <DialogContent>
+               <DialogContentText style={{ fontWeight: 'bold', textAlign: 'center' }}>
+                  Are you sure you want to delete this campaign?
+               </DialogContentText>
+               <DialogContentText style={{ fontWeight: 'bold', textAlign: 'center'}}>
+                  This action cannot be reversed and the information will be lost.
+               </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+               <Button variant="contained" onClick={() => setOpenDialog(false)} color="error" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+                  Cancel
+               </Button>
+               <Button variant="outlined" onClick={handleDeleteConfirmed} color="secondary" style={{ fontWeight: 'bold', fontStyle: 'italic', margin: "10px" }}>
+                  Confirm and Delete
+               </Button>
+            </DialogActions>
+         </Dialog>
       </section>
    )
 }
