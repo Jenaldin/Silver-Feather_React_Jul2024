@@ -21,7 +21,7 @@ const campaignSchema = new mongoose.Schema({
          message: 'Invalid image link',
       },
    },
-   campaignLang: {
+   language: {
       type: String,
       required: [true, 'Language the campaign is in is required']
    },

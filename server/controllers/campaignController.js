@@ -11,6 +11,19 @@ const getMyCampaigns = async (req, res) =>{
    }
 };
 
+const createCampaign = async (req, res) => {
+   const payload = req.body;
+   const ownerId = req.user._id;
+   try {
+      await campaignService.addNew(payload, ownerId);
+      res.json({ message: 'Campaign added successfully' });
+   } catch (error) {
+      const errMsg = error.message;
+      res.send({ message: errMsg })
+   }
+}
+
 module.exports = {
    getMyCampaigns,
+   createCampaign,
 }

@@ -36,12 +36,12 @@ export default function CampaignList() {
          </div>
          
          <div id="title" className="heading-small">
-            <h5>And here is a list of the campaigns you have already created:</h5>
+            <h5>A list of the campaigns you have already created:</h5>
          </div>
          <div className="gallery" >
          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', margin: '15px' }} >
             {campaigns.length === 0 ? (
-               <Typography variant="h5">Unfortunately, we did not find any. Crate your first one!</Typography>
+               <Typography variant="h5">Unfortunately, we did not find any... Crate your first one!</Typography>
             ) : (
                campaigns.slice(0, visibleItems).map((item, index) => (
                   <Card key={index} sx={{ maxWidth: 500, margin: '1rem', height: "200px" }}>
@@ -49,7 +49,7 @@ export default function CampaignList() {
                         <CardActionArea>
                            <CardMedia
                               component="img"
-                              height={item.imageUrl ? "150" : "50"}
+                              style={{height: '150px', width: '400px', objectFit: 'cover' }}
                               image={item.imageUrl ? item.imageUrl : "/images/logo.png"}
                               alt={item.title}
                            />

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { campaignModel } = require('../models/index');
+const { campaignModel, userModel } = require('../models/index');
 
 exports.getMyCampaigns = async (userId) => {
    try {
@@ -9,4 +9,14 @@ exports.getMyCampaigns = async (userId) => {
    } catch (err) {
       throw new Error('Error fetching campaigns: ' + err.message);
    }
+};
+
+exports.addNew = async (payload, ownerId) => {
+   console.log(payload);
+   const createdCampaign = await campaignModel.create({
+      ...payload,
+      owner: ownerId,
+   })
+   await userModel.findByIdAndUpdate(ownerId, { $push: { campaignsOwned: createdCampaign._id } });
+   return createdCampaign;
 };

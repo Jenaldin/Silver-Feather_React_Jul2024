@@ -5,24 +5,22 @@ import { useForm } from 'react-hook-form';
 import { Button, CssBaseline, Grid, Box, Container, TextField, Select, 
          MenuItem, FormControl, InputLabel, FormHelperText } from "@mui/material";
 
-import { useLogin } from "../../hooks/useAuth";
 import { useAuthContext } from "../../context/AuthContext";
+import { useCreateCampaign } from "../../hooks/useCampaign";
 
 export default function CampaignAdd() {
    const { handleSubmit, register, formState: { errors }, watch, trigger } = useForm();
-   const { username, userId } = useAuthContext();
+   const { username } = useAuthContext();
 
    const navigate = useNavigate();
-   const loginHandler = useLogin();
+   const createCampaignHandler = useCreateCampaign()
 
    const onSubmit = async (data) => {
-      console.log(username, userId);
       try {
-         const { title, setting, language, partySize, imageUrl, description} = data;
-         await loginHandler(userId, title, setting, language, partySize, imageUrl, description);
+         await createCampaignHandler(data);
          navigate(`/my-boards/${username}/campaigns`);
       } catch (error) {
-         console.error('Login error:', error.message);
+         console.error('Crate game error:', error.message);
       }
    };
 
