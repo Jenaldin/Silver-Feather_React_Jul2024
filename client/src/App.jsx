@@ -10,6 +10,7 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
+import Logout from './components/logout/Logout';
 import NotFound from './components/not-found/NotFound';
 import PostList from './components/post/PostList';
 import ProfileDetails from './components/profile/ProfileDetails';
@@ -45,6 +46,7 @@ function App() {
               </Route>
               <Route path='/adventurers-board' element={<PostList />} />
               <Route element={<PrivateGuard />}>
+                <Route path='/sign-out' element={<Logout />} />
                 <Route path='/adventurers-board/posts/new' element={<PostAdd />} />
                 <Route path='/adventurers-board/posts/:id' element={<PostDetails />} />
                 <Route path='/adventurers-board/posts/edit/:id' element={<PostEdit />} />

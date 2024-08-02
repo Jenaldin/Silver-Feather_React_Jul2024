@@ -5,18 +5,17 @@ export default function usePersistedState(key, initialState) {
       const persistedAuth = localStorage.getItem(key);
 
       if(!persistedAuth){
-         return initialState;
+         return typeof initialState === 'function' ? initialState() : initialState;
       }
 
       const authData = JSON.parse(persistedAuth);
-
       return authData;
    });
 
    const updatedState = (value) => {
-      localStorage.setItem(key, JSON.stringify(value));
-      
-      setState(value)
+      const newState = typeof value === 'function' ? value(state) : value;
+      localStorage.setItem(key, JSON.stringify(newState));      
+      setState(newState)
    }
 
    return [state, updatedState]

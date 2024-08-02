@@ -1,8 +1,8 @@
-import { login, register } from "../api/auth-api"
-import { useAuthContext } from "../context/AuthContext";
+import { login, register, logout } from "../api/auth-api"
+import { AuthContext, useAuthContext } from "../context/AuthContext";
 
 export const useLogin = () => {
-   const {changeAuthState} = useAuthContext();
+   const {changeAuthState} = useAuthContext(AuthContext);
    
    const loginHandler = async (username, password) => {
       try {
@@ -18,7 +18,7 @@ export const useLogin = () => {
 };
 
 export const useRegister = () => {
-   const {changeAuthState} = useAuthContext();
+   const {changeAuthState} = useAuthContext(AuthContext);
 
    const registerHandler = async (username, email, password, rePass) => {
       try {
@@ -31,4 +31,19 @@ export const useRegister = () => {
    };
 
    return registerHandler
+};
+
+export const useLogout = () => {
+   const { logout: localLogout } = useAuthContext();
+
+   const logoutHandler = async () => {
+      try {
+         localLogout()
+         await logout();
+      } catch (err) {
+         console.log(err.message);
+      };
+   };
+
+   return logoutHandler
 }

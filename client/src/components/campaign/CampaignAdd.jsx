@@ -18,8 +18,8 @@ export default function CampaignAdd() {
    const onSubmit = async (data) => {
       console.log(username, userId);
       try {
-         // const { title, setting, language, partySize, imageUrl, description} = data;
-         // await loginHandler(userId, title, setting, language, partySize, imageUrl, description);
+         const { title, setting, language, partySize, imageUrl, description} = data;
+         await loginHandler(userId, title, setting, language, partySize, imageUrl, description);
          navigate(`/my-boards/${username}/campaigns`);
       } catch (error) {
          console.error('Login error:', error.message);
