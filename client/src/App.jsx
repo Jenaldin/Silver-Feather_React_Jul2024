@@ -27,6 +27,7 @@ import PostDetails from './components/post/PostDetails';
 import PostEdit from './components/post/PostEdit';
 import PrivateGuard from './components/common/PrivateGuard';
 import PublicGuard from './components/common/PublicGuard';
+import SignOutGuard from './components/common/SignOutGuard';
 
 function App() {
 
@@ -44,6 +45,9 @@ function App() {
               <Route element={<PublicGuard />}>
                 <Route path='/register' element={<Register />} />
                 <Route path='/sign-in' element={<Login />} />
+              </Route>
+              <Route element={<SignOutGuard />}>
+                <Route path='/sign-out' element={<Logout />} />
               </Route>
               <Route element={<PrivateGuard />}>
                 <Route path='/sign-out' element={<Logout />} />
