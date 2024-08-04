@@ -9,8 +9,8 @@ export function useCreateCampaign(){
 }
 
 export function useUpdateCampaign(){
-   const updateCampaignHandler = async (data) => {
-      await updateCampaign(data);
+   const updateCampaignHandler = async (campaignId, data) => {
+      await updateCampaign(campaignId, data);
    };
 
    return updateCampaignHandler;
