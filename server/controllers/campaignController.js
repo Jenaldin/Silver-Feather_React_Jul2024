@@ -36,7 +36,6 @@ const createCampaign = async (req, res) => {
 const editCampaign = async (req, res) => {
    const { campaignId } = req.params;
    const payload = req.body;
-console.log(campaignId, payload);
    try { 
       await campaignService.editCurrent(campaignId, payload);
       res.json({ message: 'Campaign updated successfully' });
