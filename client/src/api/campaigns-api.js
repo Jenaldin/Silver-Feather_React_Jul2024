@@ -3,24 +3,33 @@ import requester from "./requester";
 const BASE_URL = 'http://localhost:3000/api/campaign';
 
 export const getAll = async (userId) => {
-   try {
-     const result = await requester.get(`${BASE_URL}/${userId}`);;
-     return result;
-   } catch (error) {
-     console.log('Error fetching campaigns:', error.message);
-     throw new Error('Unable to fetch campaigns. Please try again later.');
-   }
- };
+  try {
+    const result = await requester.get(`${BASE_URL}/${userId}`);;
+    return result;
+  } catch (error) {
+    console.log('Error fetching campaigns:', error.message);
+    throw new Error('Unable to fetch campaigns. Please try again later.');
+  }
+};
 
 export const createCampaign = async (data) => {
-  const result = await requester.post(`${BASE_URL}/create`, data)
-  return result;
+  try {
+    const result = await requester.post(`${BASE_URL}/create`, data)
+    return result;
+  } catch (error) {
+    console.log('Error creating campaign:', error.message);
+    throw new Error('Unable to create campaign. Please try again later.');
+  }
 }
 
-export const updateCampaign = async (campaignId, data) => { 
-  const result = await requester.put(`${BASE_URL}/edit/${campaignId}`, data);
-  
+export const updateCampaign = async (campaignId, data) => {
+  try {
+    const result = await requester.put(`${BASE_URL}/edit/${campaignId}`, data);
   return result;
+  } catch (error) {
+    console.log('Error updating campaign:', error.message);
+    throw new Error('Unable to update campaign. Please try again later.');
+  }
 }
 
 export const getCampaign = async (campaignId) => {
@@ -41,4 +50,4 @@ export const deleteCampaign = async (campaignId) => {
     console.log('Error delete a campaign:', error.message);
     throw new Error('Unable to delete campaign. Please try again later.');
   }
-}
+};

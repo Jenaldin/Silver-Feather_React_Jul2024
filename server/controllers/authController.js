@@ -5,14 +5,10 @@ const registerUser = async (req, res) => {
    try {
       const result = await authService.register(userData);
       const { token, username, id } = result;
-      res.status(200).json({ message: 'Registration successful', username, id });
+      res.status(200).json({ message: 'Registration successful', token, username, id });
    } catch (err) {
       const errMsg = err.message;
-      if (err.name === 'ValidationError') {
-         res.status(400).json({ message: errMsg });
-      } else {
-         res.status(500).json({ message: errMsg });
-      }
+      res.send({ message: errMsg })
    };
 };
 
@@ -24,11 +20,7 @@ const loginUser = async (req, res) => {
       res.status(200).json({ message: 'Login successful', token, username, id });
    } catch (err) {
       const errMsg = err.message;
-      if (err.name === 'ValidationError') {
-         res.status(400).json({ message: errMsg });
-      } else {
-         res.status(500).json({ message: errMsg });
-      }
+      res.send({ message: errMsg })
    };
 };
 
@@ -39,11 +31,7 @@ const logoutUser = async (req, res) => {
       res.status(200).json({ message: 'Logout successful' });
    } catch (err) {
       const errMsg = err.message;
-      if (err.name === 'ValidationError') {
-         res.status(400).json({ message: errMsg });
-      } else {
-         res.status(500).json({ message: errMsg });
-      }
+      res.send({ message: errMsg })
    };
 };
 
@@ -52,7 +40,4 @@ module.exports = {
    registerUser,
    loginUser,
    logoutUser,
-   //getUser,
-   // getMyUser,
-   // editMyUser,
 }

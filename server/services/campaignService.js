@@ -18,20 +18,23 @@ exports.getOneCampaign = async (campaignId) => {
       const campaign = await campaignModel.findById(campaignId).populate('owner', 'username');
       return campaign
    } catch (error) {
-      const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
-      if (!isValidObjectId(campaignId)) {
-         return 'Not a valid campaign id';
-      }
+      throw new Error('Error fetching requested campaign: ' + error.message);
    }
 };
 
 exports.addNew = async (payload, ownerId) => {
-   const createdCampaign = await campaignModel.create({
-      ...payload,
-      owner: ownerId,
-   })
-   await userModel.findByIdAndUpdate(ownerId, { $push: { campaignsOwned: createdCampaign._id } });
-   return createdCampaign;
+   try {
+      const createdCampaign = await campaignModel.create({
+         ...payload,
+         owner: ownerId,
+      });
+
+      await userModel.findByIdAndUpdate(ownerId, { $push: { campaignsOwned: createdCampaign._id } });
+
+      return createdCampaign;
+   } catch (error) {
+      throw new Error('Error creating campaign: ' + error.message);
+   }
 };
 
 exports.editCurrent = async (campaignId, payload) => {
@@ -53,10 +56,18 @@ exports.editCurrent = async (campaignId, payload) => {
          dmNotes: updatedDmNotes,
       };
 
-      await campaignModel.findByIdAndUpdate(campaignId, payloadUpdated, { runValidators: true });
+      const updatedCampaign = await campaignModel.findByIdAndUpdate(campaignId, payloadUpdated, { runValidators: true });
+      return updatedCampaign;
    } catch (error) {
       throw new Error('Error updating campaign: ' + error.message);
    }
 };
 
-exports.deleteCurrent = async (campaignId) => await campaignModel.findByIdAndDelete(campaignId);
+exports.deleteCurrent = async (campaignId) => {
+   try {
+      await campaignModel.findByIdAndDelete(campaignId);
+      return "Campaign deleted"
+   } catch (error) {
+      throw new Error('Error deleting campaign: ' + error.message);
+   }
+}
