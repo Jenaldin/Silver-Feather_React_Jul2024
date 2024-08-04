@@ -40,11 +40,11 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/about' element={<About />} />
               <Route path='/not-found' element={<NotFound />} />
+              <Route path='/adventurers-board' element={<PostList />} />
               <Route element={<PublicGuard />}>
                 <Route path='/register' element={<Register />} />
                 <Route path='/sign-in' element={<Login />} />
               </Route>
-              <Route path='/adventurers-board' element={<PostList />} />
               <Route element={<PrivateGuard />}>
                 <Route path='/sign-out' element={<Logout />} />
                 <Route path='/adventurers-board/posts/new' element={<PostAdd />} />
