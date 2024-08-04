@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -37,6 +37,7 @@ export default function CampaignEdit() {
    });
    const { username } = useAuthContext();
    const { id } = useParams();
+   const campaignId = useRef(id)
 
    const navigate = useNavigate();
    const updateCampaignHandler = useUpdateCampaign()
@@ -46,20 +47,20 @@ export default function CampaignEdit() {
          .then(result => {
             setCampaignDetails(result);
             setValue('title', result.title);
-      setValue('setting', result.setting);
-      setValue('language', result.language);
-      setValue('partySize', result.partySize);
-      setValue('imageUrl', result.imageUrl)
-      setValue('isPublic', result.isPublic);
-      setValue('description', result.description);
+            setValue('setting', result.setting);
+            setValue('language', result.language);
+            setValue('partySize', result.partySize);
+            setValue('imageUrl', result.imageUrl)
+            setValue('isPublic', result.isPublic);
+            setValue('description', result.description);
          })
          .catch(err => console.error('Error fetching campaigns:', err.message));
-      
+
    }, [id, setValue]);
 
    const onSubmit = async (data) => {
       try {
-         updateCampaignHandler(data).then(() => navigate(`/my-boards/${username}/campaigns/${id}`));
+         updateCampaignHandler(campaignId.current, data).then(() => navigate(`/my-boards/${username}/campaigns/${campaignId.current}`));
       } catch (error) {
          console.error('Crate game error:', error.message);
       }
@@ -94,11 +95,11 @@ export default function CampaignEdit() {
                               id="title"
                               label="Title *"
                               type="input"
-                              value={watch('title') || campaignDetails.title}
-          onChange={(e) => {
-            setValue('title', e.target.value);
-            setCampaignDetails({ ...campaignDetails, title: e.target.value });
-          }}
+                              value={watch('title') || campaignDetails.title || ''}
+                              onChange={(e) => {
+                                 setValue('title', e.target.value);
+                                 setCampaignDetails({ ...campaignDetails, title: e.target.value });
+                              }}
                               error={!!errors.title}
                               helperText={errors.title?.message}
                               onBlur={() => trigger('title')}
@@ -119,7 +120,7 @@ export default function CampaignEdit() {
                                  onChange={(e) => {
                                     setValue('setting', e.target.value);
                                     setCampaignDetails({ ...campaignDetails, setting: e.target.value });
-                                  }}
+                                 }}
                               >
                                  <MenuItem value="Homebrew">Homebrew</MenuItem>
                                  <MenuItem value="Avernus">Avernus</MenuItem>
@@ -159,11 +160,11 @@ export default function CampaignEdit() {
                               id="language"
                               label="Campaign Language *"
                               type="input"
-                              value={watch('language') || campaignDetails.language}
-          onChange={(e) => {
-            setValue('language', e.target.value);
-            setCampaignDetails({ ...campaignDetails, language: e.target.value });
-          }}
+                              value={watch('language') || campaignDetails.language || ''}
+                              onChange={(e) => {
+                                 setValue('language', e.target.value);
+                                 setCampaignDetails({ ...campaignDetails, language: e.target.value });
+                              }}
                               error={!!errors.language}
                               helperText={errors.language?.message}
                               onBlur={() => trigger('language')}
@@ -187,11 +188,11 @@ export default function CampaignEdit() {
                               id="partySize"
                               label="Party Size *"
                               type="number"
-                              value={watch('partySize') || campaignDetails.partySize}
-          onChange={(e) => {
-            setValue('partySize', e.target.value);
-            setCampaignDetails({ ...campaignDetails, partySize: e.target.value });
-          }}
+                              value={watch('partySize') || campaignDetails.partySize || ''}
+                              onChange={(e) => {
+                                 setValue('partySize', e.target.value);
+                                 setCampaignDetails({ ...campaignDetails, partySize: e.target.value });
+                              }}
                               error={!!errors.partySize}
                               helperText={errors.partySize?.message}
                               onBlur={() => trigger('partySize')}
@@ -210,11 +211,11 @@ export default function CampaignEdit() {
                               name="imageUrl"
                               id="imageUrl"
                               label="Cover image link *"
-                              value={watch('imageUrl') || campaignDetails.imageUrl}
-          onChange={(e) => {
-            setValue('imageUrl', e.target.value);
-            setCampaignDetails({ ...campaignDetails, imageUrl: e.target.value });
-          }}
+                              value={watch('imageUrl') || campaignDetails.imageUrl || ''}
+                              onChange={(e) => {
+                                 setValue('imageUrl', e.target.value);
+                                 setCampaignDetails({ ...campaignDetails, imageUrl: e.target.value });
+                              }}
                               error={!!errors.imageUrl}
                               helperText={errors.imageUrl?.message}
                               onBlur={() => trigger('imageUrl')}
@@ -225,13 +226,14 @@ export default function CampaignEdit() {
                               control={
                                  <Tooltip title={campaignDetails.isPublic ? '' : 'Once you click this box and save, you will no longer be able to uncheck it'}>
                                     <Checkbox
-                                       {...register('isPublic')}
-                                       checked={watch('isPublic') || campaignDetails.isPublic || false}
+                                       name="isPublic"
+                                       checked={campaignDetails.isPublic}
                                        color="primary"
                                        disabled={campaignDetails.isPublic}
                                        onChange={(e) => {
                                           setValue('isPublic', e.target.checked);
-                                          setCampaignDetails({ ...campaignDetails, isPublic: e.target.checked });}}
+                                          setCampaignDetails({ ...campaignDetails, isPublic: e.target.checked });
+                                       }}
                                     />
                                  </Tooltip>
                               }
@@ -258,11 +260,11 @@ export default function CampaignEdit() {
                               multiline
                               minRows={4}
                               maxRows={5}
-                              value={watch('description') || campaignDetails.description}
-          onChange={(e) => {
-            setValue('description', e.target.value);
-            setCampaignDetails({ ...campaignDetails, description: e.target.value });
-          }}
+                              value={watch('description') || campaignDetails.description || ''}
+                              onChange={(e) => {
+                                 setValue('description', e.target.value);
+                                 setCampaignDetails({ ...campaignDetails, description: e.target.value });
+                              }}
                               error={!!errors.description}
                               helperText={errors.description?.message}
                               onBlur={() => trigger('description')}
