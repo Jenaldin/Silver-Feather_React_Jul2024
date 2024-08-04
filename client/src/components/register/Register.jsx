@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { Button, CssBaseline, TextField, Grid, Box, Container } from "@mui/material";
+import { toast, ToastContainer } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css'; 
 import { theme } from '../common/muiTheme';
 
 import { useRegister } from "../../hooks/useAuth";
@@ -19,7 +21,8 @@ export default function Register() {
          await registerHandler(username, email, password, rePass);
          navigate('/');
       } catch (error) {
-         console.log('Register error: ', error.message);
+         console.log('Login error: ', error.message);
+         toast.error('Something went wrong. Please try again later.');
       }
    };
 
@@ -144,6 +147,7 @@ export default function Register() {
             </Box>
          </Box>
       </Container>
+      <ToastContainer position="top-center" autoClose={5000} style={{ fontWeight: 'bold', width: "400px" }} />
       </section>
    );
 }

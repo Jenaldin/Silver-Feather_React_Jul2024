@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { Button, CssBaseline, TextField, Grid, Box, Container } from "@mui/material";
+import { toast, ToastContainer } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css'; 
 import { theme } from '../common/muiTheme';
 
 import { useLogin } from "../../hooks/useAuth";
@@ -20,6 +22,7 @@ export default function Login() {
          navigate('/');
       } catch (error) {
          console.log('Login error: ', error.message);
+         toast.error('Something went wrong. Please try again later.');
       }
    };
 
@@ -81,6 +84,7 @@ export default function Login() {
             </Box>
          </Box>
       </Container>
+      <ToastContainer position="top-center" autoClose={5000} style={{ fontWeight: 'bold', width: "400px" }} />
       </section>
    );
 }
