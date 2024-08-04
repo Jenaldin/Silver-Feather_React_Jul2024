@@ -32,7 +32,7 @@ export default function ProfileDetails() {
                   />
                </div>
                <div className="button-div-card-profile-section">
-                  <Button variant="contained" style={{color: 'primary', fontWeight: 'bold', fontStyle: 'italic'}}>
+                  <Button variant="contained" style={{ fontWeight: 'bold', fontStyle: 'italic'}}>
                      ENTER
                   </Button>
                </div>
@@ -60,7 +60,7 @@ export default function ProfileDetails() {
                   />
                </div>
                <div className="button-div-card-profile-section">
-                  <Button variant="contained" style={{color: 'primary', fontWeight: 'bold', fontStyle: 'italic'}}>
+                  <Button variant="contained" style={{fontWeight: 'bold', fontStyle: 'italic'}}>
                      ENTER
                   </Button>
                </div>
