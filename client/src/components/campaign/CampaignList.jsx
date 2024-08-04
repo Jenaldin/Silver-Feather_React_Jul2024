@@ -14,7 +14,7 @@ export default function CampaignList() {
    useEffect(() => {
       campaignsAPI.getAll(userId)
          .then(result => setCampaigns(result))
-         .catch(err => console.error('Error fetching campaigns:', err.message));
+         .catch(err => console.log('Error fetching campaigns:', err.message));
    }, []);
 
    const loadMoreItems = () => {

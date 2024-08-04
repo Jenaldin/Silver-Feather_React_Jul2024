@@ -20,7 +20,7 @@ export default function CampaignAdd() {
          await createCampaignHandler(data);
          navigate(`/my-boards/${username}/campaigns`);
       } catch (error) {
-         console.error('Crate game error:', error.message);
+         console.log('Crate game error:', error.message);
       }
    };
 

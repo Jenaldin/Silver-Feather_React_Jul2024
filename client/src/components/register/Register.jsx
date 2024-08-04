@@ -21,7 +21,7 @@ export default function Register() {
          await registerHandler(username, email, password, rePass);
          navigate('/');
       } catch (error) {
-         console.error('Register error:', error.message);
+         console.log('Register error: ', error.message);
       }
    };
 

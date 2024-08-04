@@ -79,13 +79,13 @@ export default function Home() {
                </p>
             </div>
          </div>
-         <div id="text-2">
+         {/* <div id="text-2">
             <h6 className="heading-small">
                Not decided if you are going to join us and become a member of our
                fine establishment? Browse below our latest from the Adventurer's
                Board. Enjoy!
             </h6>
-         </div>
+         </div> */}
       </section>
    );
 }

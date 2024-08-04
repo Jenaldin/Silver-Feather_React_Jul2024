@@ -17,7 +17,7 @@ export default function CampaignDetails() {
    useEffect(() => {
       campaignsAPI.getCampaign(id)
          .then(result => setCampaignDetails(result))
-         .catch(err => console.error('Error fetching campaigns:', err.message));
+         .catch(err => console.log('Error fetching campaigns:', err.message));
    }, []);
 
    const handleDeleteConfirmed = async () => {

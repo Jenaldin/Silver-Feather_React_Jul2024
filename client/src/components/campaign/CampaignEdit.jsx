@@ -54,7 +54,7 @@ export default function CampaignEdit() {
             setValue('isPublic', result.isPublic);
             setValue('description', result.description);
          })
-         .catch(err => console.error('Error fetching campaigns:', err.message));
+         .catch(err => console.log('Error fetching campaigns:', err.message));
 
    }, [id, setValue]);
 
@@ -62,7 +62,7 @@ export default function CampaignEdit() {
       try {
          updateCampaignHandler(campaignId.current, data).then(() => navigate(`/my-boards/${username}/campaigns/${campaignId.current}`));
       } catch (error) {
-         console.error('Crate game error:', error.message);
+         console.log('Crate game error:', error.message);
       }
    };
 
