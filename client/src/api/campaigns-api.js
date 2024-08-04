@@ -8,7 +8,7 @@ export const getAll = async (userId) => {
     return result;
   } catch (error) {
     console.log('Error fetching campaigns:', error.message);
-    throw new Error('Unable to fetch campaigns. Please try again later.');
+    throw new Error(error.message);
   }
 };
 
@@ -18,7 +18,7 @@ export const createCampaign = async (data) => {
     return result;
   } catch (error) {
     console.log('Error creating campaign:', error.message);
-    throw new Error('Unable to create campaign. Please try again later.');
+    throw new Error(error.message);
   }
 }
 
@@ -28,7 +28,7 @@ export const updateCampaign = async (campaignId, data) => {
   return result;
   } catch (error) {
     console.log('Error updating campaign:', error.message);
-    throw new Error('Unable to update campaign. Please try again later.');
+    throw new Error(error.message);
   }
 }
 
@@ -38,7 +38,7 @@ export const getCampaign = async (campaignId) => {
     return result;
   } catch (error) {
     console.log('Error fetching a campaign:', error.message);
-    throw new Error('Unable to fetch campaign. Please try again later.');
+    throw new Error(error.message);
   }
 };
 
@@ -48,6 +48,6 @@ export const deleteCampaign = async (campaignId) => {
     return result;
   } catch (error) {
     console.log('Error delete a campaign:', error.message);
-    throw new Error('Unable to delete campaign. Please try again later.');
+    throw new Error(error.message);
   }
 };
