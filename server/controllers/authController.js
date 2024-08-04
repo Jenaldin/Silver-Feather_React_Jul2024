@@ -25,7 +25,6 @@ const loginUser = async (req, res) => {
 };
 
 const logoutUser = async (req, res) => {
-   console.log("test enter logout final");
    try {
       res.clearCookie('auth');
       res.status(200).json({ message: 'Logout successful' });
