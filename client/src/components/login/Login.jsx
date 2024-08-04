@@ -2,8 +2,7 @@ import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
-import LoginIcon from '@mui/icons-material/Login';
+import { Button, CssBaseline, TextField, Grid, Box, Container } from "@mui/material";
 import { theme } from '../common/muiTheme';
 
 import { useLogin } from "../../hooks/useAuth";
@@ -28,13 +27,8 @@ export default function Login() {
       <section id="section-wrapper">
       <Container component="main" maxWidth="xs" className="card-players">
          <CssBaseline />
-         <Box sx={{ marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-               <LoginIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-               Sign-in
-            </Typography>
+         <Box sx={{ marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src="/images/sign-in.png" alt="sign-in" height="250px"/>
             <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -74,13 +68,13 @@ export default function Login() {
                      />
                   </Grid>
                </Grid>
-               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
+               <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
                   Sign-in
                </Button>
                <Grid container justifyContent="flex-end">
                   <Grid item>
                      <Link to="/register" style={{ textDecoration: 'none', color: theme.palette.primary.dark }}>
-                        Not a member of the Tavern? Register!
+                        Not a member of the Tavern? Join us and register!
                      </Link>
                   </Grid>
                </Grid>

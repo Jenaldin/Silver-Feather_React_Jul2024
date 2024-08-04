@@ -2,9 +2,7 @@ import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from "@mui/material";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
+import { Button, CssBaseline, TextField, Grid, Box, Container } from "@mui/material";
 import { theme } from '../common/muiTheme';
 
 import { useRegister } from "../../hooks/useAuth";
@@ -32,13 +30,8 @@ export default function Register() {
       <section id="section-wrapper">
       <Container component="main" maxWidth="xs" className="card-players">
          <CssBaseline />
-         <Box sx={{ marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-               <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-               Register
-            </Typography>
+         <Box sx={{ marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+         <img src="/images/register.png" alt="register" height="250px"/>
             <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -138,13 +131,13 @@ export default function Register() {
                      />
                   </Grid>
                </Grid>
-               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
+               <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
                   Register
                </Button>
                <Grid container justifyContent="flex-end">
                   <Grid item>
                      <Link to="/sign-in" style={{ textDecoration: 'none', color: theme.palette.primary.dark }}>
-                        Already a member of the Tavern? Sign in!
+                        Already a member of the Tavern? Then sign-in!
                      </Link>
                   </Grid>
                </Grid>
