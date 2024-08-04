@@ -1,27 +1,48 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
-import { Button, CssBaseline, Grid, Box, Container, TextField, Select, 
-         MenuItem, FormControl, InputLabel, FormHelperText } from "@mui/material";
+import {
+   Button,
+   CssBaseline,
+   Grid,
+   Box,
+   Container,
+   TextField,
+   Select,
+   MenuItem,
+   FormControl,
+   InputLabel,
+   FormHelperText,
+} from "@mui/material";
+import { toast, ToastContainer } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 import { useAuthContext } from "../../context/AuthContext";
 import { useCreateCampaign } from "../../hooks/useCampaign";
 
 export default function CampaignAdd() {
-   const { handleSubmit, register, formState: { errors }, watch, trigger } = useForm();
+   const {
+      handleSubmit,
+      register,
+      formState: { errors },
+      watch,
+      trigger,
+   } = useForm();
    const { username } = useAuthContext();
 
    const navigate = useNavigate();
-   const createCampaignHandler = useCreateCampaign()
+   const createCampaignHandler = useCreateCampaign();
 
-   const onSubmit = async (data) => {
-      try {
-         await createCampaignHandler(data);
-         navigate(`/my-boards/${username}/campaigns`);
-      } catch (error) {
-         console.log('Crate game error:', error.message);
-      }
+   const onSubmit = (data) => {
+      createCampaignHandler(data)
+         .then(() => {
+            navigate(`/my-boards/${username}/campaigns`);
+         })
+         .catch((error) => {
+            console.log("Create game error: ", error.message);
+            toast.error("Something went wrong. Please try again later.");
+         });
    };
 
    return (
@@ -29,23 +50,39 @@ export default function CampaignAdd() {
          <div id="title" className="main-titles">
             <h2>Create new Campaign:</h2>
          </div>
-         <div id="campaign-form" className="card-players" style={{width: "auto", padding: "10px"}}>
+         <div
+            id="campaign-form"
+            className="card-players"
+            style={{ width: "auto", padding: "10px" }}
+         >
             <Container component="main" maxWidth="md">
                <CssBaseline />
-               <Box sx={{ marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+               <Box
+                  sx={{
+                     marginTop: 0,
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                  }}
+               >
+                  <Box
+                     component="form"
+                     noValidate
+                     onSubmit={handleSubmit(onSubmit)}
+                     sx={{ mt: 3 }}
+                  >
                      <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                            <TextField
-                              {...register('title', {
-                                 required: 'Title is required',
+                              {...register("title", {
+                                 required: "Title is required",
                                  minLength: {
                                     value: 10,
-                                    message: 'Title must be at least 10 characters',
+                                    message: "Title must be at least 10 characters",
                                  },
                                  maxLength: {
                                     value: 256,
-                                    message: 'Title must be at most 256 characters',
+                                    message: "Title must be at most 256 characters",
                                  },
                               })}
                               fullWidth
@@ -55,26 +92,30 @@ export default function CampaignAdd() {
                               type="input"
                               error={!!errors.title}
                               helperText={errors.title?.message}
-                              onBlur={() => trigger('title')}
+                              onBlur={() => trigger("title")}
                            />
                         </Grid>
                         <Grid item xs={12} md={6}>
                            <FormControl fullWidth error={!!errors.setting}>
-                              <InputLabel id="setting-label" shrink={!!watch('setting')} >Campaign Setting *</InputLabel>
+                              <InputLabel id="setting-label" shrink={!!watch("setting")}>
+                                 Campaign Setting *
+                              </InputLabel>
                               <Select
-                                 {...register('setting', {
-                                    required: 'Campaign setting is required',
+                                 {...register("setting", {
+                                    required: "Campaign setting is required",
                                  })}
                                  labelId="setting-label"
                                  name="setting"
                                  id="setting"
-                                 onBlur={() => trigger('setting')}
-                                 value={watch('setting') || ''}
+                                 onBlur={() => trigger("setting")}
+                                 value={watch("setting") || ""}
                               >
                                  <MenuItem value="Homebrew">Homebrew</MenuItem>
                                  <MenuItem value="Avernus">Avernus</MenuItem>
                                  <MenuItem value="Eberron">Eberron</MenuItem>
-                                 <MenuItem value="Forgotten Realms">Forgotten Realms</MenuItem>
+                                 <MenuItem value="Forgotten Realms">
+                                    Forgotten Realms
+                                 </MenuItem>
                                  <MenuItem value="Greyhawk">Greyhawk</MenuItem>
                                  <MenuItem value="Ravenloft">Ravenloft</MenuItem>
                                  <MenuItem value="Ravnica">Ravnica</MenuItem>
@@ -89,19 +130,21 @@ export default function CampaignAdd() {
                         </Grid>
                         <Grid item xs={12} md={6}>
                            <TextField
-                              {...register('language', {
-                                 required: 'Title is required',
+                              {...register("language", {
+                                 required: "Title is required",
                                  minLength: {
                                     value: 2,
-                                    message: 'Campaign Language must be at least 2 characters',
+                                    message:
+                                       "Campaign Language must be at least 2 characters",
                                  },
                                  maxLength: {
                                     value: 10,
-                                    message: 'Campaign Language must be at most 10 characters',
+                                    message:
+                                       "Campaign Language must be at most 10 characters",
                                  },
                                  pattern: {
                                     value: /^[a-zA-Z]+$/,
-                                    message: 'Invalid Language',
+                                    message: "Invalid Language",
                                  },
                               })}
                               fullWidth
@@ -111,20 +154,20 @@ export default function CampaignAdd() {
                               type="input"
                               error={!!errors.language}
                               helperText={errors.language?.message}
-                              onBlur={() => trigger('language')}
+                              onBlur={() => trigger("language")}
                            />
                         </Grid>
                         <Grid item xs={12} md={6}>
                            <TextField
-                              {...register('partySize', {
-                                 required: 'Party Size is required',
+                              {...register("partySize", {
+                                 required: "Party Size is required",
                                  min: {
                                     value: 2,
-                                    message: 'Party Size must be at least 2 people',
+                                    message: "Party Size must be at least 2 people",
                                  },
                                  max: {
                                     value: 8,
-                                    message: 'Party Size must be at most 8 people',
+                                    message: "Party Size must be at most 8 people",
                                  },
                               })}
                               fullWidth
@@ -134,16 +177,16 @@ export default function CampaignAdd() {
                               type="number"
                               error={!!errors.partySize}
                               helperText={errors.partySize?.message}
-                              onBlur={() => trigger('partySize')}
+                              onBlur={() => trigger("partySize")}
                            />
                         </Grid>
                         <Grid item xs={12} md={6}>
                            <TextField
-                              {...register('imageUrl', {
-                                 required: 'Cover image link is required',
+                              {...register("imageUrl", {
+                                 required: "Cover image link is required",
                                  pattern: {
                                     value: /^https:\/\/.+\.(jpg|jpeg|png|gif)$/i,
-                                    message: 'Invalid image link',
+                                    message: "Invalid image link",
                                  },
                               })}
                               fullWidth
@@ -155,20 +198,20 @@ export default function CampaignAdd() {
                               maxRows={5}
                               error={!!errors.imageUrl}
                               helperText={errors.imageUrl?.message}
-                              onBlur={() => trigger('imageUrl')}
+                              onBlur={() => trigger("imageUrl")}
                            />
                         </Grid>
                         <Grid item xs={12} md={6}>
                            <TextField
-                              {...register('description', {
-                                 required: 'Description is required',
+                              {...register("description", {
+                                 required: "Description is required",
                                  minLength: {
                                     value: 100,
-                                    message: 'Description must be at least 100 characters',
+                                    message: "Description must be at least 100 characters",
                                  },
                                  maxLength: {
                                     value: 2000,
-                                    message: 'Description must be at most 2000 characters',
+                                    message: "Description must be at most 2000 characters",
                                  },
                               })}
                               fullWidth
@@ -180,17 +223,28 @@ export default function CampaignAdd() {
                               maxRows={5}
                               error={!!errors.description}
                               helperText={errors.description?.message}
-                              onBlur={() => trigger('description')}
+                              onBlur={() => trigger("description")}
                            />
                         </Grid>
                      </Grid>
-                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
+                     <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        style={{ fontWeight: "bold", fontStyle: "italic" }}
+                     >
                         Submit
                      </Button>
                   </Box>
                </Box>
             </Container>
          </div>
+         <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            style={{ fontWeight: "bold", width: "400px" }}
+         />
       </section>
-   )
+   );
 }
