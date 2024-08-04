@@ -28,11 +28,16 @@ export const useRegister = () => {
 export const useLogout = () => {
    const { logout: localLogout } = useAuthContext();
 
-   const logoutHandler = async () => {
-      const result = await logout();
-      localLogout();
-      return result
-   };
+   const logoutHandler = () => {
+      return logout()
+        .then((result) => {
+          localLogout();
+          return result;
+        })
+        .catch((error) => {
+          throw new Error(error.message)
+        });
+    };
 
    return logoutHandler
 }
