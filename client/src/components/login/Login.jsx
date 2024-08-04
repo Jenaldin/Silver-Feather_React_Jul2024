@@ -21,7 +21,7 @@ export default function Login() {
          await loginHandler(username, password);
          navigate('/');
       } catch (error) {
-         console.log('Login error:', error.message);
+         console.log('Login error: ', error.message);
       }
    };
 
