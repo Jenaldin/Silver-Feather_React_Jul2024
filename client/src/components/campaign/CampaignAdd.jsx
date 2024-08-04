@@ -184,7 +184,7 @@ export default function CampaignAdd() {
                            />
                         </Grid>
                      </Grid>
-                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{fontWeight: 'bold', fontStyle: 'italic'}}>
                         Submit
                      </Button>
                   </Box>
