@@ -11,7 +11,7 @@ const sessionSchema = new mongoose.Schema({
    description: {
       type: String,
       minlength: [100, 'Description/Resume min length is 100 symbols'],
-      maxlength: [2000, 'Description/Resume max length is 2000 symbols'],
+      maxlength: [1000, 'Description/Resume max length is 2000 symbols'],
       required: [true, 'Description/Resume is required']
    },
    mapUrl: {
@@ -24,34 +24,34 @@ const sessionSchema = new mongoose.Schema({
       },
    },
    antagonist: {
-      type: [String],
+      type: String,
    },
    antagonistVisible:{
       type: Boolean,
       default: false
    },
    loot:{
-      type: [String],
+      type: String,
    },
    lootVisible:{
       type: Boolean,
       default: false
    },
-   campaign: {
-      type: mongoose.Types.ObjectId,
-      ref: 'Campaign'
+   isPublished: {
+      type: Boolean,
+      default: false
    },
    createdAt: {
       type: Date,
       default: Date.now,
    },
+   campaign: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Campaign'
+   },   
    owner: {
       type: mongoose.Types.ObjectId,
       ref: 'User'
-   },
-   isPublished: {
-      type: Boolean,
-      default: false
    },
 });
 

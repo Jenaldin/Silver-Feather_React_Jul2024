@@ -12,7 +12,7 @@ router.use('/', test);
 router.use('/user', auth);
 // router.use('/character', character);
 router.use('/campaign', campaign);
-// router.use('/session', session);
+router.use('/session', session);
 // router.use('/post', post);
 // router.use('/comment', comment);
 

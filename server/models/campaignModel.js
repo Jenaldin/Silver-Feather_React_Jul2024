@@ -62,6 +62,10 @@ const campaignSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'User'
    },
+   sessions: [{
+      type: mongoose.Types.ObjectId,
+      ref: 'Session',
+   }],
    charactersPlaying: [{
       type: mongoose.Types.ObjectId,
       ref: 'Character',
