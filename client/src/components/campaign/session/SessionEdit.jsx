@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 import {
    Button,
@@ -20,7 +19,6 @@ import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import * as sessionsAPI from "../../../api/sessions-api";
-import { useAuthContext } from "../../../context/AuthContext";
 import { useUpdateSession } from "../../../hooks/useSession";
 
 export default function SessionEdit(data) {
@@ -43,13 +41,11 @@ export default function SessionEdit(data) {
       lootVisible: false,
    });
 
-   const navigate = useNavigate();
    const updateSessionHandler = useUpdateSession();
-   const { username } = useAuthContext();
 
    useEffect(() => {
       sessionsAPI
-         .getSession (data.sessionId)
+         .getSession(data.sessionId)
          .then((result) => {
             setSessionDetails(result);
             setValue("title", result.title);
@@ -67,7 +63,7 @@ export default function SessionEdit(data) {
    }, [data.sessionId, setValue]);
 
    const onSubmit = (formData) => {
-      updateSessionHandler(data.sessionId, formData )
+      updateSessionHandler(data.sessionId, formData)
          .then(() => {
             data.onClose();
             data.onSessionUpdated();
@@ -82,7 +78,13 @@ export default function SessionEdit(data) {
       <div id="section-wrapper-edit-dialog">
          <DialogTitle
             className="main-titles"
-            style={{ textAlign: "center", fontStyle:"italic", fontWeight: "bold", fontFamily: "Georgia, serif", fontSize: "2.2rem" }}
+            style={{
+               textAlign: "center",
+               fontStyle: "italic",
+               fontWeight: "bold",
+               fontFamily: "Georgia, serif",
+               fontSize: "2.2rem",
+            }}
          >
             Edit Session Information
          </DialogTitle>
@@ -168,7 +170,9 @@ export default function SessionEdit(data) {
                               id="antagonist"
                               label="Session antagonist"
                               type="input"
-                              value={watch("antagonist") || sessionDetails.antagonist || ""}
+                              value={
+                                 watch("antagonist") || sessionDetails.antagonist || ""
+                              }
                               onChange={(e) => {
                                  setValue("antagonist", e.target.value);
                                  setSessionDetails({
@@ -217,9 +221,7 @@ export default function SessionEdit(data) {
                               id="loot"
                               label="Loot"
                               type="input"
-                              value={
-                                 watch("loot") || sessionDetails.loot || ""
-                              }
+                              value={watch("loot") || sessionDetails.loot || ""}
                               onChange={(e) => {
                                  setValue("loot", e.target.value);
                                  setSessionDetails({
@@ -310,8 +312,7 @@ export default function SessionEdit(data) {
                </Box>
             </Container>
          </DialogContent>
-         <DialogActions>
-         </DialogActions>
+         <DialogActions></DialogActions>
          <ToastContainer
             position="top-center"
             autoClose={5000}
