@@ -2,11 +2,11 @@ const router = require('express').Router();
 
 const test = require('./testRoute');
 const auth = require('./authRoute');
-const character = require('./characterRoute');
+// const character = require('./characterRoute');
 const campaign = require('./campaignRoute');
 const session = require('./sessionRoute');
-const post = require('./postRoute');
-const comment = require('./commentRoute');
+// const post = require('./postRoute');
+// const comment = require('./commentRoute');
 
 router.use('/', test);
 router.use('/user', auth);

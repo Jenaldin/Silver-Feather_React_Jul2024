@@ -2,8 +2,8 @@ const sessionService = require('../services/sessionService');
 
 const getSessions = async (req, res) =>{
    try {
-      const sessionId = req.params.sessionId; 
-      const items = await sessionService.getAllSessions(sessionId);
+      const campaignId = req.params.campaignId; 
+      const items = await sessionService.getAllSessions(campaignId);
       res.send(items);
    } catch (error) {
       const errMsg = error.message;
