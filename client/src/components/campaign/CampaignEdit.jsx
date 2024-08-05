@@ -76,7 +76,7 @@ export default function CampaignEdit() {
             navigate(`/my-boards/${username}/campaigns/${campaignId.current}`);
          })
          .catch((error) => {
-            console.log("Create game error: ", error.message);
+            console.log("Create campaign error: ", error.message);
             toast.error("Something went wrong. Please try again later.");
          });
    };
