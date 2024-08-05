@@ -130,6 +130,8 @@ export default function CampaignDetails() {
                         year: "numeric",
                      })}
                   </p>
+               </div>
+               <div className="text-card-profile-section">
                   <h6 className="details-label">Setting:</h6>
                   <p className="details-item-content">{campaignDetails.setting}</p>
                </div>
