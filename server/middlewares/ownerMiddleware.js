@@ -1,4 +1,5 @@
 const campaignService = require('../services/campaignService');
+const sessionService = require('../services/sessionService')
 
 // exports.isCharacterOwner = async (req, res, next) => {
 //    const characterId = req.params.campaignId
@@ -27,7 +28,7 @@ exports.isCampaignOwner = async (req, res, next) => {
 };
 
 exports.isSessionOwner = async (req, res, next) => {
-   const sessionId = req.params.sessionId
+   const sessionId = req.params.sessionId;
    const session = await sessionService.getOne({ _id: sessionId });
    if (!session) {
       return res.status(404).send();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
    Button,
@@ -26,6 +26,7 @@ export default function SessionList() {
    const [openDialog, setOpenDialog] = useState(false);
    const { userId } = useAuthContext();
    const [sessionOwner, setSessionOwner] = useState("");
+   const [selectedSessionId, setSelectedSessionId] = useState("");
 
    const currentPath = window.location.pathname;
    const segments = currentPath.split("/");
@@ -45,11 +46,15 @@ export default function SessionList() {
          });
    }, []);
 
-   const handleDeleteConfirmed = () => {
+   const handleDeleteConfirmed = (sessionId) => {
       sessionsAPI
-         .deleteSession(id)
+         .deleteSession(sessionId)
          .then(() => {
-            // navigate(`/my-boards/${username}/campaigns`);
+            setOpenDialog(false);
+            setSessions((prevSessions) =>
+               prevSessions.filter((session) => session._id !== sessionId)
+           )
+            
          })
          .catch((err) => {
             console.log("Error deleting campaign:", err.message);
@@ -148,7 +153,7 @@ export default function SessionList() {
                            )}
                            
                            <Button
-                              onClick={sessionDeleteHandler}
+                              onClick={() => {const sessionId = session._id; setSelectedSessionId(sessionId); sessionDeleteHandler(); }}
                               variant="contained"
                               color="error"
                               style={{
@@ -200,7 +205,7 @@ export default function SessionList() {
                   </Button>
                   <Button
                      variant="contained"
-                     onClick={handleDeleteConfirmed}
+                     onClick={() => handleDeleteConfirmed(selectedSessionId)}
                      color="error"
                      style={{
                         fontWeight: "bold",
