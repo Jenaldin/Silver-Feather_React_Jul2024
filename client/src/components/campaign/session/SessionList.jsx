@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import {
    Button,
@@ -19,42 +19,48 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import * as sessionsAPI from "../../../api/sessions-api";
 import { useAuthContext } from "../../../context/AuthContext";
+import SessionEdit from "./SessionEdit";
 
 export default function SessionList() {
    const [sessions, setSessions] = useState([]);
    const [expanded, setExpanded] = useState();
-   const [openDialog, setOpenDialog] = useState(false);
-   const { userId } = useAuthContext();
+   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+   const [openEditDialog, setOpenEditDialog] = useState(false);
+   const [openNewItemDialog, setOpenNewItemDialog] = useState(false);
    const [sessionOwner, setSessionOwner] = useState("");
    const [selectedSessionId, setSelectedSessionId] = useState("");
-
-   const currentPath = window.location.pathname;
-   const segments = currentPath.split("/");
-   const campaignId = segments[segments.length - 1];
-
-   const handleChange = (panel) => (event, newExpanded) => {
-      setExpanded(newExpanded ? panel : null);
-   };
+   const { userId } = useAuthContext();
+   const { id: campaignId} = useParams();
 
    useEffect(() => {
       sessionsAPI
          .getAll(campaignId)
-         .then((result) => {setSessions(result); setSessionOwner(result[0]?.owner);})
+         .then((result) => {
+            setSessions(result);
+            setSessionOwner(result[0]?.owner);
+         })
          .catch((err) => {
             console.log("Error fetching sessions: ", err.message);
             toast.error("Something went wrong. Please try again later.");
          });
    }, []);
 
+   const handleChange = (panel) => (event, newExpanded) => {
+      setExpanded(newExpanded ? panel : null);
+   };
+
+   const sessionDeleteHandler = async () => {
+      setOpenDeleteDialog(true);
+   };
+
    const handleDeleteConfirmed = (sessionId) => {
       sessionsAPI
          .deleteSession(sessionId)
          .then(() => {
-            setOpenDialog(false);
+            setOpenDeleteDialog(false);
             setSessions((prevSessions) =>
                prevSessions.filter((session) => session._id !== sessionId)
-           )
-            
+            );
          })
          .catch((err) => {
             console.log("Error deleting campaign:", err.message);
@@ -62,30 +68,31 @@ export default function SessionList() {
          });
    };
 
-   const sessionDeleteHandler = async () => {
-      setOpenDialog(true);
-   };
+   const handleEditButton = (sessionId) => {
+      setSelectedSessionId(sessionId);
+      setOpenEditDialog(true);
+    };
 
    return (
       <section id="section-wrapper-nested">
-         {(sessionOwner === userId) && (
+         {sessionOwner === userId && (
             <Button
-            variant="contained"
-            style={{
-               color: "primary",
-               fontWeight: "bold",
-               fontStyle: "italic",
-               marginTop: "auto",
-               marginBottom: "25px",
-               marginLeft: "auto",
-               marginRight: "auto",
-               display: "block",
-            }}
-         >
-            Create New Session
-         </Button>
+               variant="contained"
+               style={{
+                  color: "primary",
+                  fontWeight: "bold",
+                  fontStyle: "italic",
+                  marginTop: "auto",
+                  marginBottom: "25px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  display: "block",
+               }}
+            >
+               Create New Session
+            </Button>
          )}
-         <div className="accordeon-list">
+         <div className="accordion-list">
             {sessions.length === 0 ? (
                <Typography variant="h5">
                   Unfortunately, we did not find any... Crate your first one!
@@ -138,32 +145,39 @@ export default function SessionList() {
                            className="buttons-details-item"
                            style={{ margin: "25px" }}
                         >
-                           {(session.owner === userId) && (
+                           {session.owner === userId && (
                               <Button
-                              variant="contained"
-                              style={{
-                                 color: "primary",
-                                 fontWeight: "bold",
-                                 fontStyle: "italic",
-                                 margin: "5px",
-                              }}
-                           >
-                              Edit Session
-                           </Button>
+                                 variant="contained"
+                                 style={{
+                                    color: "primary",
+                                    fontWeight: "bold",
+                                    fontStyle: "italic",
+                                    margin: "5px",
+                                 }}
+                                 onClick={() => handleEditButton(session._id)}
+                              >
+                                 Edit Session
+                              </Button>
                            )}
-                           
-                           <Button
-                              onClick={() => {const sessionId = session._id; setSelectedSessionId(sessionId); sessionDeleteHandler(); }}
-                              variant="contained"
-                              color="error"
-                              style={{
-                                 fontWeight: "bold",
-                                 fontStyle: "italic",
-                                 margin: "5px",
-                              }}
-                           >
-                              Delete Session
-                           </Button>
+
+                           {session.owner === userId && (
+                              <Button
+                                 onClick={() => {
+                                    const sessionId = session._id;
+                                    setSelectedSessionId(sessionId);
+                                    sessionDeleteHandler();
+                                 }}
+                                 variant="contained"
+                                 color="error"
+                                 style={{
+                                    fontWeight: "bold",
+                                    fontStyle: "italic",
+                                    margin: "5px",
+                                 }}
+                              >
+                                 Delete Session
+                              </Button>
+                           )}
                         </div>
                      </AccordionDetails>
                   </Accordion>
@@ -171,7 +185,7 @@ export default function SessionList() {
             )}
          </div>
          <div id="delete-warning">
-            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <Dialog open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)}>
                <DialogTitle
                   className="title-card-profile-section"
                   style={{ fontWeight: "bold", textAlign: "center" }}
@@ -193,7 +207,7 @@ export default function SessionList() {
                <DialogActions>
                   <Button
                      variant="outlined"
-                     onClick={() => setOpenDialog(false)}
+                     onClick={() => setOpenDeleteDialog(false)}
                      color="secondary"
                      style={{
                         fontWeight: "bold",
@@ -218,11 +232,19 @@ export default function SessionList() {
                </DialogActions>
             </Dialog>
          </div>
+         <div id="edit-dialog">
+            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)} >
+               <SessionEdit 
+               sessionId={selectedSessionId}
+               campaignId={campaignId} 
+               onClose={() => setOpenEditDialog(false)}/>
+            </Dialog>
+         </div>
          <ToastContainer
             position="top-center"
             autoClose={5000}
             style={{ fontWeight: "bold", width: "400px" }}
-         />
+          />
       </section>
    );
 }
