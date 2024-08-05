@@ -306,7 +306,7 @@ export default function CampaignEdit() {
                               label="Shared with players?"
                            />
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={12}>
                            <TextField
                               {...register("description", {
                                  required: "Description is required",
@@ -341,7 +341,7 @@ export default function CampaignEdit() {
                               onBlur={() => trigger("description")}
                            />
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={12}>
                            <TextField
                               {...register("dmNotes", {
                                  maxLength: {

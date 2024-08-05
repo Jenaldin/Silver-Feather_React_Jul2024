@@ -180,7 +180,7 @@ export default function CampaignAdd() {
                               onBlur={() => trigger("partySize")}
                            />
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={12}>
                            <TextField
                               {...register("imageUrl", {
                                  required: "Cover image link is required",
@@ -193,15 +193,12 @@ export default function CampaignAdd() {
                               name="imageUrl"
                               id="imageUrl"
                               label="Cover image link *"
-                              multiline
-                              minRows={4}
-                              maxRows={5}
                               error={!!errors.imageUrl}
                               helperText={errors.imageUrl?.message}
                               onBlur={() => trigger("imageUrl")}
                            />
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={12}>
                            <TextField
                               {...register("description", {
                                  required: "Description is required",
