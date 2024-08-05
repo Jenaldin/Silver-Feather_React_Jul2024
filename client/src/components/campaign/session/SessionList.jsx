@@ -259,7 +259,7 @@ export default function SessionList() {
             </Dialog>
          </div>
          <div id="new-dialog">
-            <Dialog open={openNewItemDialog} >
+            <Dialog open={openNewItemDialog} onClose={() => setOpenNewItemDialog(false)} >
                <SessionAdd
                campaignId={campaignId} 
                onClose={() => setOpenNewItemDialog(false)}
@@ -267,7 +267,7 @@ export default function SessionList() {
             </Dialog>
          </div>
          <div id="edit-dialog">
-            <Dialog open={openEditDialog} >
+            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
                <SessionEdit 
                sessionId={selectedSessionId}
                campaignId={campaignId} 

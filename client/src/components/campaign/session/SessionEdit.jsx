@@ -14,7 +14,9 @@ import {
    Grid,
    TextField,
    Tooltip,
+   IconButton
 } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
@@ -87,6 +89,17 @@ export default function SessionEdit(data) {
             }}
          >
             Edit Session Information
+            <IconButton
+  aria-label="close"
+  onClick={data.onClose}
+  style={{
+    position: "absolute",
+    right: 8,
+    top: 8,
+  }}
+>
+  <CloseIcon color="secondary" />
+</IconButton>
          </DialogTitle>
          <DialogContent>
             <Container component="main" maxWidth="md">
