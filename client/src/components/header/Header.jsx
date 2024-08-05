@@ -44,7 +44,7 @@ export default function Header() {
                   <Button sx={buttonStyle(`/my-boards/${username}`)} > {username}'s Boards</Button>
                </Link>
                <Link to="/sign-out" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/sign-out')}>Sign out</Button>
+                  <Button sx={buttonStyle('/sign-out')}>Sign-out</Button>
                </Link>
                <Link to="/about" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/about')}>About</Button>
@@ -72,7 +72,7 @@ export default function Header() {
                   <Button sx={buttonStyle('/register')}>Register</Button>
                </Link>
                <Link to="/sign-in" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle('/sign-in')}>Sign in</Button>
+                  <Button sx={buttonStyle('/sign-in')}>Sign-in</Button>
                </Link>
                <Link to="/about" style={{ textDecoration: 'none' }}>
                   <Button sx={buttonStyle('/about')}>About</Button>

@@ -44,7 +44,7 @@ export default function Home() {
                   </Link>{" "}
                   or{" "}
                   <Link to="/sign-in" className="card-links">
-                     Sign in
+                     Sign-in
                   </Link>{" "}
                   at the front desk to access
                </p>
@@ -73,7 +73,7 @@ export default function Home() {
                   </Link>{" "}
                   or{" "}
                   <Link to="/sign-in" className="card-links">
-                     Sign in
+                     Sign-in
                   </Link>{" "}
                   at the front desk to access
                </p>

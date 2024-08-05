@@ -162,7 +162,7 @@ export default function SessionEdit(data) {
                               fullWidth
                               name="antagonist"
                               id="antagonist"
-                              label="Session antagonist *"
+                              label="Session antagonist"
                               type="input"
                               value={watch("antagonist") || sessionDetails.antagonist || ""}
                               onChange={(e) => {
@@ -211,7 +211,7 @@ export default function SessionEdit(data) {
                               fullWidth
                               name="loot"
                               id="loot"
-                              label="Loot *"
+                              label="Loot"
                               type="input"
                               value={
                                  watch("loot") || sessionDetails.loot || ""
