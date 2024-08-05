@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import {
    Button,
@@ -20,6 +21,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import * as sessionsAPI from "../../../api/sessions-api";
 import { useAuthContext } from "../../../context/AuthContext";
+import { useUpdateSession } from "../../../hooks/useSession";
 
 export default function SessionEdit(data) {
    const {
@@ -41,6 +43,8 @@ export default function SessionEdit(data) {
       lootVisible: false,
    });
 
+   const navigate = useNavigate();
+   const updateSessionHandler = useUpdateSession();
    const { username } = useAuthContext();
 
    useEffect(() => {
@@ -60,13 +64,13 @@ export default function SessionEdit(data) {
             console.log("Error fetching session: ", err.message);
             toast.error("Something went wrong. Please try again later.");
          });
-   }, [setValue]);
+   }, [data.sessionId, setValue]);
 
    const onSubmit = (formData) => {
-      updateSessionHandler(data.sessionId, formData)
+      updateSessionHandler(data.sessionId, formData )
          .then(() => {
             data.onClose();
-            navigate(`/my-boards/${username}/campaigns/${data.campaignId}`);
+            data.onSessionUpdated();
          })
          .catch((error) => {
             console.log("Create session error: ", error.message);

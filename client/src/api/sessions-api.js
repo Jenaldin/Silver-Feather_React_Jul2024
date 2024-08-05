@@ -20,8 +20,9 @@ export const getSession = async (sessionId) => {
    }
  };
 
-export const createSession = async (data) => {
+export const createSession = async (sessionId, campaignId, formData) => {
   try {
+   const data = {campaignId, ...formData}
     const result = await requester.post(`${BASE_URL}/create`, data)
     return result;
   } catch (error) {
@@ -29,9 +30,9 @@ export const createSession = async (data) => {
   }
 }
 
-export const updateSession = async (sessionId, data) => {
+export const updateSession = async (sessionId, formData) => {
   try {
-    const result = await requester.put(`${BASE_URL}/edit/${sessionId}`, data);
+    const result = await requester.put(`${BASE_URL}/edit/${sessionId}`, formData);
   return result;
   } catch (error) {
     throw new Error(error.message);

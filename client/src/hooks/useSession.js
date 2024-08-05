@@ -8,8 +8,8 @@ export function useCreateSession(){
 }
 
 export function useUpdateSession(){
-   const updateSessionHandler = async (campaignId, data) => {
-      await updateSession(campaignId, data);
+   const updateSessionHandler = async (sessionId, formData) => {
+      await updateSession(sessionId, formData);
    };
    return updateSessionHandler;
 }

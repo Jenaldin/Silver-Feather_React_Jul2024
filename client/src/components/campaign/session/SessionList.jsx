@@ -26,6 +26,7 @@ export default function SessionList() {
    const [expanded, setExpanded] = useState();
    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
    const [openEditDialog, setOpenEditDialog] = useState(false);
+   const [sessionUpdated, setSessionUpdated] = useState(false);
    const [openNewItemDialog, setOpenNewItemDialog] = useState(false);
    const [sessionOwner, setSessionOwner] = useState("");
    const [selectedSessionId, setSelectedSessionId] = useState("");
@@ -33,7 +34,7 @@ export default function SessionList() {
    const { id: campaignId} = useParams();
 
    useEffect(() => {
-      sessionsAPI
+      if(sessionUpdated){sessionsAPI
          .getAll(campaignId)
          .then((result) => {
             setSessions(result);
@@ -43,7 +44,8 @@ export default function SessionList() {
             console.log("Error fetching sessions: ", err.message);
             toast.error("Something went wrong. Please try again later.");
          });
-   }, []);
+         setSessionUpdated(false);}
+   }, [sessionUpdated]);
 
    const handleChange = (panel) => (event, newExpanded) => {
       setExpanded(newExpanded ? panel : null);
@@ -71,6 +73,10 @@ export default function SessionList() {
    const handleEditButton = (sessionId) => {
       setSelectedSessionId(sessionId);
       setOpenEditDialog(true);
+    };
+
+    const handleSessionUpdated = () => {
+      setSessionUpdated(true);
     };
 
    return (
@@ -233,11 +239,12 @@ export default function SessionList() {
             </Dialog>
          </div>
          <div id="edit-dialog">
-            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)} >
+            <Dialog open={openEditDialog} >
                <SessionEdit 
                sessionId={selectedSessionId}
                campaignId={campaignId} 
-               onClose={() => setOpenEditDialog(false)}/>
+               onClose={() => setOpenEditDialog(false)}
+               onSessionUpdated={handleSessionUpdated}/>
             </Dialog>
          </div>
          <ToastContainer
