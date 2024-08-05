@@ -20,7 +20,7 @@ export const getSession = async (sessionId) => {
    }
  };
 
-export const createSession = async (sessionId, campaignId, formData) => {
+export const createSession = async (campaignId, formData) => {
   try {
    const data = {campaignId, ...formData}
     const result = await requester.post(`${BASE_URL}/create`, data)

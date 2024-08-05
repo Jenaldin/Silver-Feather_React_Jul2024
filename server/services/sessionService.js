@@ -22,10 +22,11 @@ exports.getSession = async (sessionId) => {
    }
 };
 
-exports.addSession = async (payload, ownerId, campaignId) => {
+exports.addSession = async (payload, ownerId) => {
    try {
       const createdSession = await sessionModel.create({
          ...payload,
+         campaign: payload.campaignId,
          owner: ownerId,
       });
 

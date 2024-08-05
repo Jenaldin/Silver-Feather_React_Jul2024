@@ -20,6 +20,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import * as sessionsAPI from "../../../api/sessions-api";
 import { useAuthContext } from "../../../context/AuthContext";
 import SessionEdit from "./SessionEdit";
+import SessionAdd from "./SessionAdd";
 
 export default function SessionList() {
    const [sessions, setSessions] = useState([]);
@@ -34,7 +35,8 @@ export default function SessionList() {
    const { id: campaignId} = useParams();
 
    useEffect(() => {
-      if(sessionUpdated){sessionsAPI
+      if(sessionUpdated){
+         sessionsAPI
          .getAll(campaignId)
          .then((result) => {
             setSessions(result);
@@ -44,7 +46,19 @@ export default function SessionList() {
             console.log("Error fetching sessions: ", err.message);
             toast.error("Something went wrong. Please try again later.");
          });
-         setSessionUpdated(false);}
+         setSessionUpdated(false);
+      } else {
+         sessionsAPI
+         .getAll(campaignId)
+         .then((result) => {
+            setSessions(result);
+            setSessionOwner(result[0]?.owner);
+         })
+         .catch((err) => {
+            console.log("Error fetching sessions: ", err.message);
+            toast.error("Something went wrong. Please try again later.");
+         });
+      }
    }, [sessionUpdated]);
 
    const handleChange = (panel) => (event, newExpanded) => {
@@ -74,8 +88,12 @@ export default function SessionList() {
       setSelectedSessionId(sessionId);
       setOpenEditDialog(true);
     };
+   
+   const handleNewItemButton = () => {
+      setOpenNewItemDialog(true);
+    };
 
-    const handleSessionUpdated = () => {
+    const handleSessionCreated = () => {
       setSessionUpdated(true);
     };
 
@@ -94,17 +112,19 @@ export default function SessionList() {
                   marginRight: "auto",
                   display: "block",
                }}
+               onClick={() => handleNewItemButton()}
             >
                Create New Session
             </Button>
          )}
-         <div className="accordion-list">
+         <div className="accordion-list" style={{width: "100%"}}>
             {sessions.length === 0 ? (
                <Typography variant="h5">
                   Unfortunately, we did not find any... Crate your first one!
                </Typography>
             ) : (
                sessions.map((session, index) => (
+                  
                   <Accordion
                      key={index}
                      expanded={expanded === `panel-${index}`}
@@ -113,7 +133,7 @@ export default function SessionList() {
                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <h6 className="details-label">{session.title}</h6>
                      </AccordionSummary>
-                     <AccordionDetails>
+                     <AccordionDetails >
                         <p className="details-item-content">
                            <strong>Created on:</strong>{" "}
                            {new Date(session.createdAt).toLocaleDateString("en-US", {
@@ -132,7 +152,7 @@ export default function SessionList() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="card-links"
-                              style={{ textDecoration: "none" }}
+                              style={{ textDecoration: "none", wordWrap: "break-word" }}
                            >
                               {session.mapUrl}
                            </Link>
@@ -238,13 +258,21 @@ export default function SessionList() {
                </DialogActions>
             </Dialog>
          </div>
+         <div id="new-dialog">
+            <Dialog open={openNewItemDialog} >
+               <SessionAdd
+               campaignId={campaignId} 
+               onClose={() => setOpenNewItemDialog(false)}
+               onSessionUpdated={handleSessionCreated}/>
+            </Dialog>
+         </div>
          <div id="edit-dialog">
             <Dialog open={openEditDialog} >
                <SessionEdit 
                sessionId={selectedSessionId}
                campaignId={campaignId} 
                onClose={() => setOpenEditDialog(false)}
-               onSessionUpdated={handleSessionUpdated}/>
+               onSessionUpdated={handleSessionCreated}/>
             </Dialog>
          </div>
          <ToastContainer

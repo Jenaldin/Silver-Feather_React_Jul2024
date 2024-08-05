@@ -23,10 +23,9 @@ const getSessionDetails = async (req, res) => {
 
 const createSession = async (req, res) => {
    const payload = req.body;
-   const campaignId = "";
    const ownerId = req.user._id;
    try {
-      await sessionService.addSession(payload, ownerId, campaignId);
+      await sessionService.addSession(payload, ownerId);
       res.json({ message: 'Session added successfully' });
    } catch (error) {
       const errMsg = error.message;

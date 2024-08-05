@@ -1,8 +1,8 @@
 import { createSession, updateSession } from "../api/sessions-api";
 
 export function useCreateSession(){
-   const createSessionHandler = async (data) => {
-      await createSession(data);
+   const createSessionHandler = async (campaignId, formData) => {
+      await createSession(campaignId, formData);
    };
    return createSessionHandler;
 }
