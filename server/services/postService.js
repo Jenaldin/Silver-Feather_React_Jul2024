@@ -15,7 +15,7 @@ exports.getAllFiltered = async () => {
 
 exports.getDetails = async (postId) => {
    try {
-      const post = await postModel.findById(postId).populate('owner', 'username');
+      const post = await postModel.findById(postId).populate('owner', 'username').populate('campaign', 'title').populate('character', 'name');
       return post
    } catch (error) {
       throw new Error('Error fetching requested post: ' + error.message);

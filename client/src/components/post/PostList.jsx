@@ -62,7 +62,7 @@ export default function PostList() {
             to={`/adventurers-board/posts/new`}
             style={{ textDecoration: "none" }}
          >
-            <Button
+            {userId && (<Button
                variant="contained"
                style={{
                   color: "primary",
@@ -72,7 +72,7 @@ export default function PostList() {
                }}
             >
                Create New Quest
-            </Button>
+            </Button>)}
          </Link>
          <div>
             <Divider variant="middle" />
@@ -95,7 +95,7 @@ export default function PostList() {
                   posts.slice(0, visibleItems).map((item, index) => (
                      <Card
                         key={index}
-                        sx={{ maxWidth: 500, margin: "1rem", height: "200px" }}
+                        sx={{ maxWidth: 500, margin: "1rem", height: "170px", width: "270px" }}
                      >
                         <Link
                            className="card-links"
@@ -131,8 +131,6 @@ export default function PostList() {
                      display: "flex",
                      justifyContent: "center",
                      marginTop: "1rem",
-                     height: "auto",
-                     width:"200px"
                   }}
                >
                   <Button

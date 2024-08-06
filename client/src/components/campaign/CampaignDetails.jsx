@@ -89,7 +89,7 @@ export default function CampaignDetails() {
                </div>
                {userId === campaignDetails?.owner?._id && (
                   <>
-                     <div className="buttons-details-item" style={{ margin: "25px" }}>
+                     <div className="buttons-details-item" style={{ margin: "20px" }}>
                         <Link
                            to={`/my-boards/${username}/campaigns/edit/${id}`}
                            style={{ textDecoration: "none" }}

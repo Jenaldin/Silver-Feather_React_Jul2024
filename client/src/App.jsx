@@ -42,6 +42,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/not-found' element={<NotFound />} />
               <Route path='/adventurers-board' element={<PostList />} />
+              <Route path='/adventurers-board/posts/:id' element={<PostDetails />} />
               <Route element={<PublicGuard />}>
                 <Route path='/register' element={<Register />} />
                 <Route path='/sign-in' element={<Login />} />
@@ -52,7 +53,6 @@ function App() {
               <Route element={<PrivateGuard />}>
                 <Route path='/sign-out' element={<Logout />} />
                 <Route path='/adventurers-board/posts/new' element={<PostAdd />} />
-                <Route path='/adventurers-board/posts/:id' element={<PostDetails />} />
                 <Route path='/adventurers-board/posts/edit/:id' element={<PostEdit />} />
                 <Route path='/my-boards/:username' element={<ProfileDetails />} />
                 <Route path='/my-boards/:username/characters' element={<CharacterList />} />

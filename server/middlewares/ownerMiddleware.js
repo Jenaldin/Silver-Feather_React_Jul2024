@@ -1,5 +1,6 @@
 const campaignService = require('../services/campaignService');
-const sessionService = require('../services/sessionService')
+const sessionService = require('../services/sessionService');
+const postService = require('../services/postService');
 
 // exports.isCharacterOwner = async (req, res, next) => {
 //    const characterId = req.params.campaignId
@@ -46,7 +47,7 @@ exports.isPostOwner = async (req, res, next) => {
    if (!post) {
       return res.status(404).send();
    }
-   if (post.user.toString() !== req.user?._id) {
+   if (post.owner.toString() !== req.user?._id) {
       return res.status(403).send({ error: 'Not authorized to access this post' });
    };
    req.post = post;
@@ -59,7 +60,7 @@ exports.isCommentOwner = async (req, res, next) => {
    if (!comment) {
       return res.status(404).send();
    }
-   if (comment.user.toString() !== req.user?._id) {
+   if (comment.owner.toString() !== req.user?._id) {
       return res.status(403).send({ error: 'Not authorized to access this comment' });
    };
    req.comment = comment;
