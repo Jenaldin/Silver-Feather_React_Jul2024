@@ -40,31 +40,31 @@ exports.isSessionOwner = async (req, res, next) => {
    next();
 };
 
-// exports.isPostOwner = async (req, res, next) => {
-//    const postId = req.params.postId
-//    const post = await postService.getOne({ _id: postId });
-//    if (!post) {
-//       return res.status(404).send();
-//    }
-//    if (post.user.toString() !== req.user?._id) {
-//       return res.status(403).send({ error: 'Not authorized to access this post' });
-//    };
-//    req.post = post;
-//    next();
-// };
+exports.isPostOwner = async (req, res, next) => {
+   const postId = req.params.postId
+   const post = await postService.getOne({ _id: postId });
+   if (!post) {
+      return res.status(404).send();
+   }
+   if (post.user.toString() !== req.user?._id) {
+      return res.status(403).send({ error: 'Not authorized to access this post' });
+   };
+   req.post = post;
+   next();
+};
 
-// exports.isCommentOwner = async (req, res, next) => {
-//    const commentId = req.params.commentId
-//    const comment = await commentService.getOne({ _id: commentId });
-//    if (!comment) {
-//       return res.status(404).send();
-//    }
-//    if (comment.user.toString() !== req.user?._id) {
-//       return res.status(403).send({ error: 'Not authorized to access this comment' });
-//    };
-//    req.comment = comment;
-//    next();
-// };
+exports.isCommentOwner = async (req, res, next) => {
+   const commentId = req.params.commentId
+   const comment = await commentService.getOne({ _id: commentId });
+   if (!comment) {
+      return res.status(404).send();
+   }
+   if (comment.user.toString() !== req.user?._id) {
+      return res.status(403).send({ error: 'Not authorized to access this comment' });
+   };
+   req.comment = comment;
+   next();
+};
 
 // exports.isProfileOwner = async (req, res, next) => {
 //    const userId = req.params.userId
