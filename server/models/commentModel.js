@@ -10,7 +10,7 @@ const commentSchema = new mongoose.Schema({
    body: {
       type: String,
       minlength: [10, 'Comment message minimal length is 10 symbol'],
-      maxlength: [1000, 'Comment message maximal length is 1000 symbols'],
+      maxlength: [100, 'Comment message maximal length is 100 symbols'],
       required: [true, 'Comment message is required']
    },
    owner: {
