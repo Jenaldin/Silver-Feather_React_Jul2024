@@ -21,8 +21,12 @@ export default function Login() {
          await loginHandler(username, password);
          navigate('/');
       } catch (error) {
-         console.log('Login error: ', error.message);
-         toast.error('Something went wrong. Please try again later.');
+         console.log('Login error: ', error);
+         if (error.error === "Error logging in a user: Login or password is invalid"){
+            toast.error('Invalid sign-in information.');
+         } else {
+            toast.error('Something went wrong. Please try again later.');
+         }
       }
    };
 

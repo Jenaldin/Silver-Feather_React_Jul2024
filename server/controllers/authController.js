@@ -7,8 +7,7 @@ const registerUser = async (req, res) => {
       const { token, username, id } = result;
       res.status(200).json({ message: 'Registration successful', token, username, id });
    } catch (err) {
-      const errMsg = err.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: err.message });
    };
 };
 
@@ -19,8 +18,7 @@ const loginUser = async (req, res) => {
       const { token, username, id } = result;
       res.status(200).json({ message: 'Login successful', token, username, id });
    } catch (err) {
-      const errMsg = err.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: err.message });
    };
 };
 

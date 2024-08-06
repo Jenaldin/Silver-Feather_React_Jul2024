@@ -11,7 +11,7 @@ exports.register = async (userData) => {
    
       const user = await userModel.findOne({ username: userData.username });
       if (user) {
-         throw new Error('This Username already exists!');
+         throw new Error('Already exists!');
       };
    
       const createdUser = await userModel.create(userData);
@@ -26,17 +26,17 @@ exports.login = async ({ username, password }) => {
    try {
       const user = await userModel.findOne({ username });
       if (!user) {
-         throw new Error('Username or password is invalid');
+         throw new Error('Login or password is invalid');
       };
    
       const isValid = await bcrypt.compare(password, user.password);
       if (!isValid) {
-         throw new Error('Username or password is invalid');
+         throw new Error('Login or password is invalid');
       };
    
       const token = await generateToken(user);
       return { token, username: user.username, id: user._id };
    } catch (error) {
-      throw new Error('Error registering a user: ' + error.message);
+      throw new Error('Error logging in a user: ' + error.message);
    }
 };

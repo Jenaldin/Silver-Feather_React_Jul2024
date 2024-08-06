@@ -21,8 +21,12 @@ export default function Register() {
          await registerHandler(username, email, password, rePass);
          navigate('/');
       } catch (error) {
-         console.log('Login error: ', error.message);
-         toast.error('Something went wrong. Please try again later.');
+         console.log('Register error: ', error);
+         if (error.error === "Error registering a user: Already exists!"){
+            toast.error('We already have this person in the register.');
+         } else {
+            toast.error('Something went wrong. Please try again later.');
+         }
       }
    };
 
