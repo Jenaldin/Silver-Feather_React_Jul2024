@@ -94,11 +94,11 @@ export default function PostAdd() {
                               {...register("title", {
                                  required: "Title is required",
                                  minLength: {
-                                    value: 5,
+                                    value: 10,
                                     message: "Title must be at least 5 characters",
                                  },
                                  maxLength: {
-                                    value: 35,
+                                    value: 100,
                                     message: "Title must be at most 35 characters",
                                  },
                               })}

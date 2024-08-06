@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
    title: {
       type: String,
-      minlength: [5, 'Comment title minimal length is 5 symbol'],
-      maxlength: [35, 'Comment title maximal length is 35 symbols'],
+      minlength: [10, 'Comment title minimal length is 10 symbol'],
+      maxlength: [100, 'Comment title maximal length is 100 symbols'],
       required: [true, 'Comment title content is required'],
    },
    body: {

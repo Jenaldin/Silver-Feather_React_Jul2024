@@ -22,12 +22,12 @@ exports.getDetails = async (postId) => {
    }
 };
 
-exports.createPost = async (payload, ownerId) => {
+exports.createPost = async (payload, ownerId) => {  
    try {
       if(payload.campaignId !== ""){
          const createdPost = await postModel.create({
             ...payload,
-            campaign: payload.campaignId,
+            campaign: payload.campaign,
             owner: ownerId,
          });
          return createdPost ;
@@ -36,7 +36,7 @@ exports.createPost = async (payload, ownerId) => {
       if(payload.characterId !== ""){
          const createdPost = await postModel.create({
             ...payload,
-            character: payload.characterId,
+            character: payload.character,
             owner: ownerId,
          });
          return createdPost ;
