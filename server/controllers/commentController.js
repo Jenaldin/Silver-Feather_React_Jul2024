@@ -2,7 +2,8 @@ const commentService = require('../services/commentService');
 
 const getAllComments = async (req, res) => {
   try {
-    const items = await commentService.getAll();
+    const postId = req.params.postId
+    const items = await commentService.getAll(postId);
     res.send(items);
   } catch (error) {
     res.status(400).json({ error: error.message });
