@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const { commentModel, postModel } = require('../models/index');
 
-exports.getOne = async (postId) => await commentModel.findOne(postId);
+exports.getOne = async (commentId) => await commentModel.findOne(commentId);
 
-exports.getAllFiltered = async () => {
+exports.getAll = async (postId) => {
    try {
-      const comments = await commentModel.find();
+      const comments = await commentModel.find({post: postId});
       comments.sort((a, b) => b.createdAt - a.createdAt);
       return posts;
    } catch (error) {
