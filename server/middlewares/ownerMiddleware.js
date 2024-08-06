@@ -1,19 +1,7 @@
 const campaignService = require('../services/campaignService');
 const sessionService = require('../services/sessionService');
 const postService = require('../services/postService');
-
-// exports.isCharacterOwner = async (req, res, next) => {
-//    const characterId = req.params.campaignId
-//    const character = await characterService.getOne({ _id: characterId });
-//    if (!character) {
-//       return res.status(404).send();
-//    }
-//    if (character.owner.toString() !== req.user?._id) {
-//       return res.status(403).send({ error: 'Not authorized to access this character' });
-//    };
-//    req.character = character;
-//    next();
-// };
+const commentService = require('../services/commentService');
 
 exports.isCampaignOwner = async (req, res, next) => {
    const campaignId = req.params.campaignId
@@ -66,6 +54,19 @@ exports.isCommentOwner = async (req, res, next) => {
    req.comment = comment;
    next();
 };
+
+// exports.isCharacterOwner = async (req, res, next) => {
+//    const characterId = req.params.campaignId
+//    const character = await characterService.getOne({ _id: characterId });
+//    if (!character) {
+//       return res.status(404).send();
+//    }
+//    if (character.owner.toString() !== req.user?._id) {
+//       return res.status(403).send({ error: 'Not authorized to access this character' });
+//    };
+//    req.character = character;
+//    next();
+// };
 
 // exports.isProfileOwner = async (req, res, next) => {
 //    const userId = req.params.userId
