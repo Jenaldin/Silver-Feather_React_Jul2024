@@ -18,6 +18,7 @@ import SessionList from "./session/SessionList";
 
 export default function CampaignDetails() {
    const [campaignDetails, setCampaignDetails] = useState({});
+   const [campaignOwner, setCampaignOwner] = useState("");
    const [openDialog, setOpenDialog] = useState(false);
    const navigate = useNavigate();
    const { username, userId } = useAuthContext();
@@ -26,7 +27,7 @@ export default function CampaignDetails() {
    useEffect(() => {
       campaignsAPI
          .getCampaign(id)
-         .then((result) => setCampaignDetails(result))
+         .then((result) => {setCampaignDetails(result); setCampaignOwner(result.owner._id);})
          .catch((err) => {
             console.log("Error fetching campaign: ", err);
             toast.error("Something went wrong. Please try again later.");
@@ -199,7 +200,7 @@ export default function CampaignDetails() {
                   <h4 style={{ marginBottom: "0" }}>Campaign Sessions list:</h4>
                </div>
                <div className="text-card-profile-section">
-                  <SessionList />
+                  <SessionList campaignOwner={campaignOwner}/>
                </div>
             </div>
          </div>

@@ -22,14 +22,13 @@ import { useAuthContext } from "../../../context/AuthContext";
 import SessionEdit from "./SessionEdit";
 import SessionAdd from "./SessionAdd";
 
-export default function SessionList() {
+export default function SessionList(data) {
    const [sessions, setSessions] = useState([]);
    const [expanded, setExpanded] = useState();
    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
    const [openEditDialog, setOpenEditDialog] = useState(false);
    const [sessionUpdated, setSessionUpdated] = useState(false);
    const [openNewItemDialog, setOpenNewItemDialog] = useState(false);
-   const [sessionOwner, setSessionOwner] = useState("");
    const [selectedSessionId, setSelectedSessionId] = useState("");
    const { userId } = useAuthContext();
    const { id: campaignId} = useParams();
@@ -38,10 +37,7 @@ export default function SessionList() {
       if(sessionUpdated){
          sessionsAPI
          .getAll(campaignId)
-         .then((result) => {
-            setSessions(result);
-            setSessionOwner(result[0]?.owner);
-         })
+         .then((result) => setSessions(result))
          .catch((err) => {
             console.log("Error fetching sessions: ", err);
             toast.error("Something went wrong. Please try again later.");
@@ -52,7 +48,6 @@ export default function SessionList() {
          .getAll(campaignId)
          .then((result) => {
             setSessions(result);
-            setSessionOwner(result[0]?.owner);
          })
          .catch((err) => {
             console.log("Error fetching sessions: ", err);
@@ -99,7 +94,7 @@ export default function SessionList() {
 
    return (
       <section id="section-wrapper-nested">
-         {sessionOwner === userId && (
+         {data.campaignOwner === userId && (
             <Button
                variant="contained"
                style={{
