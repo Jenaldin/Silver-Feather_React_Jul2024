@@ -43,7 +43,7 @@ export default function SessionList() {
             setSessionOwner(result[0]?.owner);
          })
          .catch((err) => {
-            console.log("Error fetching sessions: ", err.message);
+            console.log("Error fetching sessions: ", err);
             toast.error("Something went wrong. Please try again later.");
          });
          setSessionUpdated(false);
@@ -55,7 +55,7 @@ export default function SessionList() {
             setSessionOwner(result[0]?.owner);
          })
          .catch((err) => {
-            console.log("Error fetching sessions: ", err.message);
+            console.log("Error fetching sessions: ", err);
             toast.error("Something went wrong. Please try again later.");
          });
       }
@@ -79,7 +79,7 @@ export default function SessionList() {
             );
          })
          .catch((err) => {
-            console.log("Error deleting campaign:", err.message);
+            console.log("Error deleting campaign:", err);
             toast.error("Something went wrong. Please try again later.");
          });
    };

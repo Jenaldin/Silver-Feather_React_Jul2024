@@ -14,9 +14,9 @@ import {
    Grid,
    TextField,
    Tooltip,
-   IconButton
+   IconButton,
 } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
@@ -59,7 +59,7 @@ export default function SessionEdit(data) {
             setValue("lootVisible", result.lootVisible);
          })
          .catch((err) => {
-            console.log("Error fetching session: ", err.message);
+            console.log("Error fetching session: ", err);
             toast.error("Something went wrong. Please try again later.");
          });
    }, [data.sessionId, setValue]);
@@ -71,7 +71,7 @@ export default function SessionEdit(data) {
             data.onSessionUpdated();
          })
          .catch((error) => {
-            console.log("Create session error: ", error.message);
+            console.log("Create session error: ", error);
             toast.error("Something went wrong. Please try again later.");
          });
    };
@@ -90,16 +90,16 @@ export default function SessionEdit(data) {
          >
             Edit Session Information
             <IconButton
-  aria-label="close"
-  onClick={data.onClose}
-  style={{
-    position: "absolute",
-    right: 8,
-    top: 8,
-  }}
->
-  <CloseIcon color="secondary" />
-</IconButton>
+               aria-label="close"
+               onClick={data.onClose}
+               style={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+               }}
+            >
+               <CloseIcon color="secondary" />
+            </IconButton>
          </DialogTitle>
          <DialogContent>
             <Container component="main" maxWidth="md">

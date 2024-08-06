@@ -65,7 +65,7 @@ export default function CampaignEdit() {
             setValue("description", result.description);
          })
          .catch((err) => {
-            console.log("Error fetching campaign: ", err.message);
+            console.log("Error fetching campaign: ", err);
             toast.error("Something went wrong. Please try again later.");
          });
    }, [id, setValue]);
@@ -76,7 +76,7 @@ export default function CampaignEdit() {
             navigate(`/my-boards/${username}/campaigns/${campaignId.current}`);
          })
          .catch((error) => {
-            console.log("Create campaign error: ", error.message);
+            console.log("Create campaign error: ", error);
             toast.error("Something went wrong. Please try again later.");
          });
    };

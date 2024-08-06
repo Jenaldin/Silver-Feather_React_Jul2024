@@ -13,9 +13,9 @@ import {
    Grid,
    TextField,
    Tooltip,
-   IconButton
+   IconButton,
 } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
@@ -38,7 +38,7 @@ export default function SessionAdd(data) {
             data.onSessionUpdated();
          })
          .catch((error) => {
-            console.log("Create session error: ", error.message);
+            console.log("Create session error: ", error);
             toast.error("Something went wrong. Please try again later.");
          });
    };
@@ -57,16 +57,16 @@ export default function SessionAdd(data) {
          >
             Create new Session
             <IconButton
-  aria-label="close"
-  onClick={data.onClose}
-  style={{
-    position: "absolute",
-    right: 8,
-    top: 8,
-  }}
->
-  <CloseIcon color="secondary" />
-</IconButton>
+               aria-label="close"
+               onClick={data.onClose}
+               style={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+               }}
+            >
+               <CloseIcon color="secondary" />
+            </IconButton>
          </DialogTitle>
          <DialogContent>
             <Container component="main" maxWidth="md">
@@ -142,7 +142,7 @@ export default function SessionAdd(data) {
                               control={
                                  <Tooltip title="Once you click this box and save, you will no longer be able to uncheck it">
                                     <Checkbox
-                                       {...register('antagonistVisible')}
+                                       {...register("antagonistVisible")}
                                        name="antagonistVisible"
                                        defaultChecked={false}
                                        color="primary"
@@ -168,7 +168,7 @@ export default function SessionAdd(data) {
                               control={
                                  <Tooltip title="Once you click this box and save, you will no longer be able to uncheck it">
                                     <Checkbox
-                                       {...register('lootVisible')}
+                                       {...register("lootVisible")}
                                        name="lootVisible"
                                        defaultChecked={false}
                                        color="primary"

@@ -40,7 +40,7 @@ export default function CampaignAdd() {
             navigate(`/my-boards/${username}/campaigns`);
          })
          .catch((error) => {
-            console.log("Create game error: ", error.message);
+            console.log("Create campaign error: ", error);
             toast.error("Something went wrong. Please try again later.");
          });
    };

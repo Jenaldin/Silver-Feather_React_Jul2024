@@ -28,7 +28,7 @@ export default function CampaignDetails() {
          .getCampaign(id)
          .then((result) => setCampaignDetails(result))
          .catch((err) => {
-            console.log("Error fetching campaign: ", err.message);
+            console.log("Error fetching campaign: ", err);
             toast.error("Something went wrong. Please try again later.");
          });
    }, []);
@@ -40,7 +40,7 @@ export default function CampaignDetails() {
             navigate(`/my-boards/${username}/campaigns`);
          })
          .catch((err) => {
-            console.log("Error deleting campaign:", err.message);
+            console.log("Error deleting campaign:", err);
             toast.error("Something went wrong. Please try again later.");
          });
    };

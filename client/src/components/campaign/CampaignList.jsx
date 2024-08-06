@@ -25,8 +25,8 @@ export default function CampaignList() {
       campaignsAPI
          .getAll(userId)
          .then((result) => setCampaigns(result))
-         .catch((err) => {
-            console.log("Error fetching campaigns: ", err.message);
+         .catch((error) => {
+            console.log("Error fetching campaigns: ", error);
             toast.error("Something went wrong. Please try again later.");
          });
    }, []);
