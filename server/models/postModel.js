@@ -17,14 +17,6 @@ const postSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Type of your post is required']
    },
-   liked: {
-      type: Number,
-      default: 0,
-   },
-   usersLiked: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
-   }],
    owner: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
@@ -36,6 +28,10 @@ const postSchema = new mongoose.Schema({
    campaign: {
       type: mongoose.Types.ObjectId,
       ref: 'Campaign',
+   },
+   character: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Character',
    },
    comments: [{
       type: mongoose.Types.ObjectId,
