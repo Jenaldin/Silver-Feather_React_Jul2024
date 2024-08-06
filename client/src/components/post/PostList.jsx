@@ -38,7 +38,7 @@ export default function PostList() {
    return (
       <section id="section-wrapper">
          <div id="title" className="main-titles">
-            <h2>Guild Board</h2>
+            <h2>The Guild Board</h2>
          </div>
          <div className="img-card-profile-section">
             <img
@@ -53,7 +53,7 @@ export default function PostList() {
             style={{ textAlign: "center", color: "#2D543A" }}
          >
             <h5>
-               Welcome to the board with quests, where adventurers look for a new
+               Welcome to the quest board, where adventurers look for a new
                party and dungeon masters look for adventurers
             </h5>
          </div>
