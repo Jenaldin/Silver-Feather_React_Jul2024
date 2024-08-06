@@ -6,8 +6,7 @@ const getMyCampaigns = async (req, res) =>{
       const items = await campaignService.getMyCampaigns(userId);
       res.send(items);
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -16,8 +15,7 @@ const getCampaign = async (req, res) => {
       const item = await campaignService.getOneCampaign(req.params.campaignId);
       res.send(item);
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -28,8 +26,7 @@ const createCampaign = async (req, res) => {
       await campaignService.addNew(payload, ownerId);
       res.json({ message: 'Campaign added successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -40,8 +37,7 @@ const editCampaign = async (req, res) => {
       await campaignService.editCurrent(campaignId, payload);
       res.json({ message: 'Campaign updated successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -51,8 +47,7 @@ const deleteCampaign = async (req, res) => {
       await campaignService.deleteCurrent(campaignId);
       res.json({ message: 'Campaign deleted successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 

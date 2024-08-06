@@ -6,8 +6,7 @@ const getSessions = async (req, res) =>{
       const items = await sessionService.getAllSessions(campaignId);
       res.send(items);
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -16,8 +15,7 @@ const getSessionDetails = async (req, res) => {
       const item = await sessionService.getSession(req.params.sessionId);
       res.send(item);
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -28,8 +26,7 @@ const createSession = async (req, res) => {
       await sessionService.addSession(payload, ownerId);
       res.json({ message: 'Session added successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -40,8 +37,7 @@ const editSession = async (req, res) => {
       await sessionService.editSession(sessionId, payload);
       res.json({ message: 'Session updated successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
@@ -51,8 +47,7 @@ const deleteSession = async (req, res) => {
       await sessionService.deleteSession(sessionId);
       res.json({ message: 'Session deleted successfully' });
    } catch (error) {
-      const errMsg = error.message;
-      res.send({ message: errMsg })
+      res.status(400).json({ error: error.message });
    }
 };
 
