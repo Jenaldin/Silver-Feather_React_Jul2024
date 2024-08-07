@@ -53,26 +53,37 @@ MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
    - If you try to access a page for which you lack authorization, you will be redirected to the home page;
    - If you access a page, that is planned for version 2.0 of the app, you will see a notification page for that.
 
-### REST API Endpoints (WIP)
+### REST API Endpoints
 Base URL is http://localhost:3000/api.
 ***Note:*** In the table below, “Ownership” indicates that the user is already logged in. Therefore, where “Ownership” is required, “Logged in” is marked with **-** and vice versa (if “Logged in” is required, but “Ownership” is not, the latter is marked with **-**).
 
 Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible when Logged in (Y/N)? | Requires Item Ownership (Y/N)?
 ---------|:-----------:|-------------|:---------------------------:|:--------------------------------:|:----------------------------:
-/catalog | GET | Retrieves all book items | :heavy_check_mark: | :heavy_check_mark: | **-**
-/catalog | POST | Creates a new book item | :x: | :heavy_check_mark: | **-**
-/catalog/latest | GET | Retrieves the latest 5 book items | :heavy_check_mark: | :heavy_check_mark: | **-**
-/catalog/:bookId | GET | Retrieves details of a book item | :heavy_check_mark: | :heavy_check_mark: | **-**
-/catalog/:bookId | PUT | Updates/Edits details of a book item | :x: | **-** | :heavy_check_mark:
-/catalog/:bookId | DELETE | Deletes a book item | :x: | **-** | :heavy_check_mark:
+/campaign/:userId | GET | Retrieves all campaigns owned by the user | :x: | :heavy_check_mark: | **-**
+/campaign/details/:campaignId | GET | Retrieves the details of a campaign | :x: | :heavy_check_mark: | **-**
+/campaign/create | POST | Creates a new campaign | :x: | :heavy_check_mark: | **-**
+/campaign/edit/:campaignId | PUT | Updates/Edits details of a campaign| :x: | **-** | :heavy_check_mark:
+/campaign/delete/:campaignId | DELETE | Deletes a campaign | :x: | **-** | :heavy_check_mark:
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
-/user/register | POST | Creates a new user item | :heavy_check_mark: | :x: | **-**
+/session/:campaignId | GET | Retrieves all sessions associated with a campaign | :x: | :heavy_check_mark: | **-**
+/session/details/:sessionId | GET | Retrieves the details of a session (no front end display) | :x: | :heavy_check_mark: | **-**
+/session/create | POST | Creates a new session | :x: | :heavy_check_mark: | **-**
+/session/edit/:sessionId | PUT | Updates/Edits details of a session| :x: | **-** | :heavy_check_mark:
+/session/delete/:sessionId | DELETE | Deletes a session | :x: | **-** | :heavy_check_mark:
+\~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
+/posts/ | GET | Retrieves all posts | :heavy_check_mark: | :heavy_check_mark: | **-**
+/posts/details/:postId | GET | Retrieves the details of a post | :heavy_check_mark: | :heavy_check_mark: | **-**
+/posts/create | POST | Creates a new post | :x: | :heavy_check_mark: | **-**
+/posts/edit/:sessionId | PUT | Updates/Edits details of a post | :x: | **-** | :heavy_check_mark:
+/posts/delete/:sessionId | DELETE | Deletes a post | :x: | **-** | :heavy_check_mark:
+\~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
+/comment/:postId | GET | Retrieves all comments associated with a post | :heavy_check_mark: | :heavy_check_mark: | **-**
+/comment/new | POST | Creates a new comments | :x: | :heavy_check_mark: | **-**
+/comment/:commentId | DELETE | Deletes a comments | :x: | **-** | :heavy_check_mark:
+\~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
+/user/register | POST | Creates a new user | :heavy_check_mark: | :x: | **-**
 /user/login | POST | Logs in as an existing user | :heavy_check_mark: | :x: | **-**
 /user/logout | POST | Logs out an existing user | :x: | :heavy_check_mark: | **-**
-\~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
-/comment | GET | Retrieves all comment items associated with a book item | :x: | :heavy_check_mark: | **-**
-/comment/new | POST | Creates a new comment item | :x: | :heavy_check_mark: | **-**
-/comment/:commentId | DELETE | Deletes a comment item | :x: | **-** | :heavy_check_mark:
 
 ### Project structure
 Here is a ***high-level*** overview of the project's structure as folders:
