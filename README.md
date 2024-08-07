@@ -1,4 +1,3 @@
-# VERSION 0.1 (DRAFT README)
 # Silver Feather Tavern by Jenny Guteva
 The Silver Feather Tavern is initially designed as a React Exam Project for SoftUni's August 2024 examination session. However, with the author's evolving commitments and availability, it holds the potential to blossom into a passion project, having additional features in the future (most of them already planned). 
 
@@ -6,14 +5,14 @@ There are parts of this project (Character creation) that took too long due to t
 
 The idea behind the Silver Feather Tavern is to present users, who love pen&paper roleplaying games, with an app that helps them manage their characters, campaigns, sessions. Also to present them the opportunity to meet new people with whom to play via announcing their willingness to do so in the form of posts and comments to those posts. It is inspired by other well known applications like Roll20, D&D Beyond (web) and Fantasy Grounds (desktop). The future development would include implementation of the Dungeons & Dragons 5th Edition OGL version, but if possible other systems too, to present options for a bigger community.
 
-App can be also found deployed here: 
+App can be also found deployed here: (WIP, coming soon...)
 
 ## Project Overview
 The App is currently in the development phase, with no production options included. It utilizes MongoDB as its database (mongodb://127.0.0.1:27017/).
 Frontend operates on http://localhost:5173/ and incorporates : | Backend runs on http://localhost:3000/ and employs:
 ---------------------------------------------------------------|----------------------------------------------------
 React, Vite, JavaScript | Express, Mongoose
-MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
+Material UI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 (For more details, please refer to ```/client/package.json```) | (For more details, please refer to ```/server/package.json```)
 
 ## Installation Guide
@@ -21,10 +20,19 @@ MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 - Node.js
 - MongoDB
 
-### Setup Instructions (WIP)
+### Setup Instructions
 1. Download or clone the repository.
-2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client).
-3. The application uses ‘concurrently’. To start both the frontend and backend simultaneously, run `npm run start-all`. Alternatively, run separately `ng serve` in /client for the frontend and `npm start` in /server for the backend.
+The application uses ‘concurrently’.
+<<***Option 1***>>
+2. Run `npm run magic` to install all dependencies and start the client and server.
+<<***Option 3***>>
+Run install and start separately with ‘concurrently’.
+2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client). 
+3. Run `npm run start-all` to start both the frontend and backend simultaneously.
+<<***Option 3***>>
+Skip ‘concurrently’ altogether and do separate install and run/start for the /client and /server
+2. Run `npm install` in /client for the frontend and then in the /server for the backend. 
+3. Run separately `npm run dev` in /client for the frontend and `npm start` in /server for the backend.
 
 ## Usage
 ### From an End User Perspective
