@@ -25,25 +25,25 @@ MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client).
 3. The application uses ‘concurrently’. To start both the frontend and backend simultaneously, run `npm run start-all`. Alternatively, run separately `ng serve` in /client for the frontend and `npm start` in /server for the backend.
 
-## Usage (WIP)
+## Usage
 ### From an End User Perspective
+(*Note* all Character related functionality is delayed for version 2.0)
 - As a ***guest user***, you can:
-   - Access the home, catalog, search, about, login, and register pages;
-   - View the details page of a book from the home, catalog, and search pages;
-   - If you attempt to access a non-existent location, you will be redirected to /404;
-   - If you try to access a page for which you lack authorization, you will receive a notification and be redirected to the login page.
+   - Access the home, posts board (Adventurers Guild Board), about, login, and register pages;
+   - View the posts (Quests) and comments (Reply Notes) of the post board (Adventurers Guild Board);
+   - If you attempt to access a non-existent location, you will be redirected to /not-found;
+   - If you try to access a page for which you lack authorization, you will be redirected to the login page;
 - As an ***authenticated user***, you can:
-   - Access the home, catalog, search, about, and profile pages, and have the option to logout;
-   - View the details page of a book from the home, catalog, and search pages;
-   - Add a new book from the catalog page;
-   - If you’re the owner of a book, edit or delete it from its details page;
-   - View the comments section of a book from its details page;
-   - Create a new comment, edit or delete your comment from the comments section;
-   - Rate other users’ comments as useful or not from the comments section;
-   - When adding your first comment for a book, rate the book;
+   - Access the home, posts board (Adventurers Guild Board), personal section (User's Board), about, and have the option to logout;
+   - View the posts (Quests) and comments (Reply Notes) of the post board (Adventurers Guild Board), view the Players Vault (character creation section) and Dungeon Master's Layer (campaign and sessions creation section) of the personal section (User's Board);
+   - Add a new post (Quest) from the post board (Adventurers Guild Board) page, choosing if you are posting it for a Campaign or Character (*Note* all Character related functionality is delayed for version 2.0);
+   - If you’re the owner of a post (Quest), edit or delete it from its details page;
+   - View the comments (Reply Notes) section of a post (Quest) from its details page;
+   - Create a new comment (Reply Note), edit or delete your comment (Reply Note) from the comments (Reply Notes) section;
    - View your profile and modify some of its content - your avatar, your first and last name, your email, add “about me” information, see which books you own and which books you have requested;
-   - View other users’ profiles, which contain the same types of information as yours;
-   - If you try to access a page for which you lack authorization, you will receive a notification and be redirected to the home page.
+   - If you attempt to access a non-existent location, you will be redirected to /not-found;
+   - If you try to access a page for which you lack authorization, you will receive a notification and be redirected to the home page;
+   - If you access a page, that is planned for version 2.0 of the app, you will see a notification page for that.
 
 ### REST API Endpoints (WIP)
 Base URL is http://localhost:3000/api.
