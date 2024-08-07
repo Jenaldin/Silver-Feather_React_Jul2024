@@ -1,8 +1,10 @@
 # VERSION 0.1 (DRAFT README)
 # Silver Feather Tavern by Jenny Guteva
-The Book Corner is initially designed as an Angular Exam Project for SoftUni's April 2024 examination session. However, with the author's evolving commitments and availability, it holds the potential to blossom into a passion project, having additional features in the future.
+The Silver Feather Tavern is initially designed as a React Exam Project for SoftUni's August 2024 examination session. However, with the author's evolving commitments and availability, it holds the potential to blossom into a passion project, having additional features in the future (most of them already planned). 
 
-The essence of The Book Corner lies in its ability to foster a virtual, blog-like space for small communities - be it a neighborhood or any small group of individuals. It serves as a platform where book enthusiasts can lend and borrow books, fostering a culture of shared reading experiences. This process involves no financial transactions and operates purely on mutual agreements. The primary objective is to cultivate stronger community bonds, facilitate better understanding among members, and indulge in a shared hobby. It's a solution for those who love books but are constrained by space at home for book storage.
+There are parts of this project (Character creation) that took too long due to their complexity. That in combination of the approaching deadline for the exam, they were left to be included in version 2.0. This project now contains MVP 1.0. 
+
+The idea behind the Silver Feather Tavern is to present users, who love pen&paper roleplaying games, with an app that helps them manage their characters, campaigns, sessions. Also to present them the opportunity to meet new people with whom to play via announcing their willingness to do so in the form of posts and comments to those posts. It is inspired by other well known applications like Roll20, D&D Beyond (web) and Fantasy Grounds (desktop). The future development would include implementation of the Dungeons & Dragons 5th Edition OGL version, but if possible other systems too, to present options for a bigger community.
 
 App can be also found deployed here: 
 
