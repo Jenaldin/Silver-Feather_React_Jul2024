@@ -1,5 +1,13 @@
 {
+  "name": "Silver-Feather-Inn",
+  "author": "Jenny-Guteva",
+  "version": "1.0.0",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install && cd ..",
+    "start-all": "concurrently \"cd client && npm run dev\" \"cd server && npm start\"",
+    "magic": "npm run install-all && npm run start-all"
   }
 }
