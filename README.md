@@ -5,7 +5,7 @@ There are parts of this project (Character creation) that took too long due to t
 
 The idea behind the Silver Feather Tavern is to present users, who love pen&paper roleplaying games, with an app that helps them manage their characters, campaigns, sessions. Also to present them the opportunity to meet new people with whom to play via announcing their willingness to do so in the form of posts and comments to those posts. It is inspired by other well known applications like Roll20, D&D Beyond (web) and Fantasy Grounds (desktop). The future development would include implementation of the Dungeons & Dragons 5th Edition OGL version, but if possible other systems too, to present options for a bigger community.
 
-App can be also found deployed here: (WIP, coming soon...)
+App can be also found deployed here: https://silver-feather-tavern.up.railway.app/
 
 ## Project Overview
 The App is currently in the development phase, with no production options included. It utilizes MongoDB as its database (mongodb://127.0.0.1:27017/).
