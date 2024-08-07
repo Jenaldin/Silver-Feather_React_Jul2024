@@ -5,11 +5,11 @@ exports.getOne = async (commentId) => await commentModel.findOne(commentId);
 
 exports.getAll = async (postId) => {
    try {
-      const comments = await commentModel.find({post: postId});
+      const comments = await commentModel.find({post: postId}).populate('owner', 'username');
       comments.sort((a, b) => b.createdAt - a.createdAt);
-      return posts;
+      return comments;
    } catch (error) {
-      throw new Error('Error fetching comments: ' + error.message);
+      throw new Error('Error fetching comments: ' + error);
    }
 };
 
@@ -26,6 +26,7 @@ exports.createComment = async (payload, ownerId) => {
    try {
       const createdComment = await commentModel.create({
          ...payload,
+         post: payload.postId,
          owner: ownerId,
       });
 
@@ -46,7 +47,7 @@ exports.editComment = async (commentId, payload) => {
    }
 };
 
-exports.deletePost = async (commentId) => {
+exports.deleteComment = async (commentId) => {
    try {
       await commentModel.findByIdAndDelete(commentId);
       return "Comment deleted"

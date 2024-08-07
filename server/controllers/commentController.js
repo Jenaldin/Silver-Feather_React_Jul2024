@@ -1,6 +1,6 @@
 const commentService = require('../services/commentService');
 
-const getAllComments = async (req, res) => {
+const getAllComments = async (req, res) => {  
   try {
     const postId = req.params.postId
     const items = await commentService.getAll(postId);
@@ -42,9 +42,10 @@ const editComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
-  const { CommentId } = req.params;
+  const { commentId } = req.params;
+
   try {
-    await commentService.deleteComment(CommentId);
+    await commentService.deleteComment(commentId);
     res.json({ message: 'Comment deleted successfully' });
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -6,7 +6,7 @@ const commentController = require('../controllers/commentController')
 const { isAuth } = require('../middlewares/authMiddleware');
 const { isCommentOwner } = require('../middlewares/ownerMiddleware');
 
-router.get('/', commentController.getAllComments);
+router.get('/:postId', commentController.getAllComments);
 router.get('/details/:commentId', commentController.commentDetails);
 router.post('/create', isAuth, commentController.createComment);
 router.put('/edit/:commentId', isCommentOwner, commentController.editComment);

@@ -14,6 +14,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import { useAuthContext } from "../../context/AuthContext";
 import * as postsAPI from "../../api/posts-api";
+import CommentList from "./comment/CommentList";
 
 export default function PostDetails() {
    const [postDetails, setPostDetails] = useState({});
@@ -50,14 +51,6 @@ export default function PostDetails() {
 
    return (
       <section id="section-wrapper">
-         <Link to={`/adventurers-board`} style={{ textDecoration: "none" }}>
-            <Button
-               variant="outlined"
-               style={{ fontWeight: "bold", fontStyle: "italic" }}
-            >
-               Back to Adventurers Guild Board
-            </Button>
-         </Link>
          <div id="title" className="main-titles">
             <h2>{postDetails.title}</h2>
          </div>
@@ -124,6 +117,7 @@ export default function PostDetails() {
                      </p>
                   </div>
                   <div className="text-card-profile-section">
+                  
                      <h6 className="details-label">Quest for:</h6>
                      {postDetails.type === "Campaign" ? (
                         <p className="details-item-content">
@@ -137,6 +131,8 @@ export default function PostDetails() {
                   </div>
                   <div className="text-card-profile-section">
                      {postDetails.type === "Campaign" ? (
+                        <>
+                        <h6 className="details-label"> Link to campaign: </h6>
                         <Link
                            to={`/my-boards/${username}/campaigns/${postDetails.campaign?._id}`}
                            target="_blank"
@@ -148,10 +144,12 @@ export default function PostDetails() {
                               fontSize: "1.2em",
                            }}
                         >
-                           {" "}
-                           Link to campaign: {postDetails.campaign?.title}
+                           {postDetails.campaign?.title}
                         </Link>
+                        </>
                      ) : (
+                        <>
+                        <h6 className="details-label"> Link to character: </h6>
                         <Link
                            to={`/my-boards/${username}/characters/${postDetails.character?._id}`}
                            target="_blank"
@@ -163,9 +161,9 @@ export default function PostDetails() {
                               fontSize: "1.2em",
                            }}
                         >
-                           {" "}
-                           Link to character: {postDetails.character?.name}
+                           {postDetails.character?.name}
                         </Link>
+                        </>
                      )}
                   </div>
                </div>
@@ -176,18 +174,20 @@ export default function PostDetails() {
             </div>
          </div>
 
+         <CommentList />
+
          <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
             <DialogTitle
                className="title-card-profile-section"
                style={{ fontWeight: "bold", textAlign: "center" }}
             >
-               Confirm Deletion of "{postDetails.title}" post
+               Confirm Deletion of "{postDetails.title}" Quest
             </DialogTitle>
             <DialogContent>
                <DialogContentText
                   style={{ fontWeight: "bold", textAlign: "center" }}
                >
-                  Are you sure you want to delete this post?
+                  Are you sure you want to delete this quest?
                </DialogContentText>
                <DialogContentText
                   style={{ fontWeight: "bold", textAlign: "center" }}
@@ -214,6 +214,7 @@ export default function PostDetails() {
                </Button>
             </DialogActions>
          </Dialog>
+         
          <ToastContainer
             position="top-center"
             autoClose={5000}

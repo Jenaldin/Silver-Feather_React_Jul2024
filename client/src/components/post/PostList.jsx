@@ -19,7 +19,7 @@ import { useAuthContext } from "../../context/AuthContext";
 export default function PostList() {
    const [posts, setPosts] = useState([]);
    const [visibleItems, setVisibleItems] = useState(3);
-   const { username, userId } = useAuthContext();
+   const { userId } = useAuthContext();
 
    useEffect(() => {
       postsAPI
