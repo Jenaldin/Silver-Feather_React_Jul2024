@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const sessionSchema = new mongoose.Schema({
    title: {
@@ -16,12 +15,6 @@ const sessionSchema = new mongoose.Schema({
    },
    mapUrl: {
       type: String,
-      validate: {
-         validator: function (value) {
-            return validator.isURL(value) && /^https:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(value);
-         },
-         message: 'Invalid cover link',
-      },
    },
    antagonist: {
       type: String,
