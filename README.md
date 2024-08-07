@@ -16,33 +16,39 @@ MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 
 ## Installation Guide
 ### Prerequisites
-- Vite (React)
 - Node.js
 - MongoDB
 
-### Setup Instructions
+### Setup Instructions (WIP)
 1. Download or clone the repository.
 2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client).
 3. The application uses ‘concurrently’. To start both the frontend and backend simultaneously, run `npm run start-all`. Alternatively, run separately `ng serve` in /client for the frontend and `npm start` in /server for the backend.
 
 ## Usage
 ### From an End User Perspective
-(***IMPORTANT NOTE*** all Character related functionality is delayed for version 2.0)
+(***IMPORTANT NOTE*** all Character related functionality described below is delayed until version 2.0 of the app)
 - As a ***guest user***, you can:
    - Access the home, posts board (Adventurers Guild Board), about, login, and register pages;
-   - View the posts (Quests) and comments (Reply Notes) of the post board (Adventurers Guild Board);
+   - View the posts (Quests) of the post board (Adventurers Guild Board);
+   - View the comments (Replies) section of a post (Quest) from its details page;
    - If you attempt to access a non-existent location, you will be redirected to /not-found;
    - If you try to access a page for which you lack authorization, you will be redirected to the login page;
 - As an ***authenticated user***, you can:
    - Access the home, posts board (Adventurers Guild Board), personal section (User's Board), about, and have the option to logout;
-   - View the posts (Quests) and comments (Reply Notes) of the post board (Adventurers Guild Board), view the Players Vault (character creation section) and Dungeon Master's Layer (campaign and sessions creation section) of the personal section (User's Board);
-   - Add a new post (Quest) from the post board (Adventurers Guild Board) page, choosing if you are posting it for a Campaign or Character (*Note* all Character related functionality is delayed for version 2.0);
+   - View the posts (Quests) of the post board (Adventurers Guild Board);
+   - Add a new post (Quest) from the post board (Adventurers Guild Board) page, choosing if you are posting it for a Campaign or Character and linking the post (Quest) to a specific Campaign or Character, if they are marked as Public (visible to others);
+   - View characters and campaigns announced in a post (Quest);
    - If you’re the owner of a post (Quest), edit or delete it from its details page;
-   - View the comments (Reply Notes) section of a post (Quest) from its details page;
-   - Create a new comment (Reply Note), edit or delete your comment (Reply Note) from the comments (Reply Notes) section;
-   - View your profile and modify some of its content - your avatar, your first and last name, your email, add “about me” information, see which books you own and which books you have requested;
+   - View the comments (Replies) section of a post (Quest) from its details page;
+   - Create a new comment (Reply Note) or delete your comment (Reply Note) from the comments (Replies) section;
+   - View the personal section (User's Board) and from there the character catalog (Players Vault) and campaign catalog (Dungeon Master's Layer);
+   - Create a new character in the character catalog (Players Vault). Edit or delete it from its details page;
+   - Create a new campaign in the campaign catalog (Dungeon Master's Layer). Edit or delete it from its details page;
+   - View the sessions list related to a campaign from its details page;
+   - Create a new sessions in the details page of a campaign.
+   - View the sessions details, expanding the sessions list entry for a certain session. Edit or delete it from there;
    - If you attempt to access a non-existent location, you will be redirected to /not-found;
-   - If you try to access a page for which you lack authorization, you will receive a notification and be redirected to the home page;
+   - If you try to access a page for which you lack authorization, you will be redirected to the home page;
    - If you access a page, that is planned for version 2.0 of the app, you will see a notification page for that.
 
 ### REST API Endpoints (WIP)
@@ -54,26 +60,17 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 /catalog | GET | Retrieves all book items | :heavy_check_mark: | :heavy_check_mark: | **-**
 /catalog | POST | Creates a new book item | :x: | :heavy_check_mark: | **-**
 /catalog/latest | GET | Retrieves the latest 5 book items | :heavy_check_mark: | :heavy_check_mark: | **-**
-/catalog/search | GET | Retrieves search results | :heavy_check_mark: | :heavy_check_mark: | **-**
 /catalog/:bookId | GET | Retrieves details of a book item | :heavy_check_mark: | :heavy_check_mark: | **-**
 /catalog/:bookId | PUT | Updates/Edits details of a book item | :x: | **-** | :heavy_check_mark:
 /catalog/:bookId | DELETE | Deletes a book item | :x: | **-** | :heavy_check_mark:
-/catalog/requestSub/:bookId | PUT | Subscribes to a book item (Request to read it) | :x: | :heavy_check_mark: | **-**
-/catalog/cancelSub/:bookId | PUT | Unsubscribes from a book item (Cancel request to read it) | :x: | :heavy_check_mark: | **-**
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /user/register | POST | Creates a new user item | :heavy_check_mark: | :x: | **-**
 /user/login | POST | Logs in as an existing user | :heavy_check_mark: | :x: | **-**
 /user/logout | POST | Logs out an existing user | :x: | :heavy_check_mark: | **-**
-/user/profile/:userId | GET | Retrieves a user profile | :x: | :heavy_check_mark: | **-**
-/user/my-profile/:userId | GET | Retrieves your profile | :x: | **-** | :heavy_check_mark:
-/user/my-profile/:userId | PUT | Updates/Edits your profile | :x: | **-** | :heavy_check_mark:
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /comment | GET | Retrieves all comment items associated with a book item | :x: | :heavy_check_mark: | **-**
 /comment/new | POST | Creates a new comment item | :x: | :heavy_check_mark: | **-**
-/comment/:commentId | PUT | Updates/Edits the content of a comment item | :x: | **-** | :heavy_check_mark:
 /comment/:commentId | DELETE | Deletes a comment item | :x: | **-** | :heavy_check_mark:
-/comment/voteYes/:commentId | PUT | Votes for a comment item with "yes" (useful) | :x: | :heavy_check_mark: | **-**
-/comment/voteNo/:commentId | PUT | Votes for a comment item with "no" (not useful) | :x: | :heavy_check_mark: | **-**
 
 ### Project structure
 Here is a ***high-level*** overview of the project's structure as folders:
