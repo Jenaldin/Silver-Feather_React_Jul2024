@@ -30,7 +30,7 @@ exports.addSession = async (payload, ownerId) => {
          owner: ownerId,
       });
 
-      await campaignModel.findByIdAndUpdate(campaignId, { $push: { sessions: createdSession._id } });
+      await campaignModel.findByIdAndUpdate(payload.campaignId, { $push: { sessions: createdSession._id } });
 
       return createdSession;
    } catch (error) {
