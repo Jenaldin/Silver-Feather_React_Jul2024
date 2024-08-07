@@ -74,8 +74,8 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 /posts/ | GET | Retrieves all posts | :heavy_check_mark: | :heavy_check_mark: | **-**
 /posts/details/:postId | GET | Retrieves the details of a post | :heavy_check_mark: | :heavy_check_mark: | **-**
 /posts/create | POST | Creates a new post | :x: | :heavy_check_mark: | **-**
-/posts/edit/:sessionId | PUT | Updates/Edits details of a post | :x: | **-** | :heavy_check_mark:
-/posts/delete/:sessionId | DELETE | Deletes a post | :x: | **-** | :heavy_check_mark:
+/posts/edit/:postId | PUT | Updates/Edits details of a post | :x: | **-** | :heavy_check_mark:
+/posts/delete/:postId | DELETE | Deletes a post | :x: | **-** | :heavy_check_mark:
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /comment/:postId | GET | Retrieves all comments associated with a post | :heavy_check_mark: | :heavy_check_mark: | **-**
 /comment/new | POST | Creates a new comments | :x: | :heavy_check_mark: | **-**
