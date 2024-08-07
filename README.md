@@ -25,14 +25,17 @@ Material UI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 The application uses ‘concurrently’.
 
 <<***Option 1***>>
+
 2. Run `npm run magic` to install all dependencies and start the client and server.
 
-<<***Option 3***>>
+<<***Option 2***>>
+
 Run install and start separately with ‘concurrently’.
 2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client). 
 3. Run `npm run start-all` to start both the frontend and backend simultaneously.
 
 <<***Option 3***>>
+
 Skip ‘concurrently’ altogether and do separate install and run/start for the /client and /server
 2. Run `npm install` in /client for the frontend and then in the /server for the backend. 
 3. Run separately `npm run dev` in /client for the frontend and `npm start` in /server for the backend.
