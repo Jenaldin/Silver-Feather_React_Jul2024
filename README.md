@@ -27,7 +27,7 @@ MUI, HTML, CSS | BCrypt, Cookie-parser, JSON Web Token, dotenv
 
 ## Usage
 ### From an End User Perspective
-(*Note* all Character related functionality is delayed for version 2.0)
+(***IMPORTANT NOTE*** all Character related functionality is delayed for version 2.0)
 - As a ***guest user***, you can:
    - Access the home, posts board (Adventurers Guild Board), about, login, and register pages;
    - View the posts (Quests) and comments (Reply Notes) of the post board (Adventurers Guild Board);
