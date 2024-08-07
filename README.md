@@ -83,7 +83,7 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /user/register | POST | Creates a new user | :heavy_check_mark: | :x: | **-**
 /user/login | POST | Logs in as an existing user | :heavy_check_mark: | :x: | **-**
-/user/logout | POST | Logs out an existing user | :x: | :heavy_check_mark: | **-**
+/user/logout | GET | Logs out an existing user | :x: | :heavy_check_mark: | **-**
 
 ### Project structure
 Here is a ***high-level*** overview of the project's structure as folders:
